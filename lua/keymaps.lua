@@ -24,6 +24,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<S-l>", ":bnext<cr>", opts)
 keymap("n", "<S-h>", ":bprev<cr>", opts)
 
+-- These is in autocommands.lua
+-- Toggle the quickfix window
+keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
+
 -- Blatently stolen from emacs
 keymap("n", "<A-x>", "<cmd>Telescope commands<cr>", opts)
 
@@ -47,6 +51,7 @@ if wk_status_ok then
     ["<leader><leader>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>,"] = { "<cmd>Telescope buffers<CR>", "Find Buffers" },
     ["<leader>."] = { "<cmd>Telescope live_grep<CR>", "File Search" },
+    ["<leader>`"] = { ":edit #<CR>", "Last Buffer" },
     ["<leader>l"] = {
       name = "+LSP",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Actions" },
@@ -55,7 +60,7 @@ if wk_status_ok then
       f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-      w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+      w = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" },
     },
     ["<leader>p"] = {
       name = "+Packer",
@@ -71,6 +76,22 @@ if wk_status_ok then
     },
     ["<leader>c"] = { "<cmd>bd<CR>", "Close Buffer" },
     ["K"] = { vim.lsp.buf.hover, "Show hover" },
+    c = {
+      r = {
+        name = 'Coerce Case',
+        c = { "camelCase" },
+        m = { "MixedCase" },
+        ['_'] = { "snake_case" },
+        s = { "snake_case" },
+        u = { "SNAKE_UPPERCASE" },
+        U = { "SNAKE_UPPERCASE" },
+        ['-'] = { "dash-case" },
+        k = { "kebab-case" },
+        ['.'] = { "dot.case" },
+        [' '] = { "space case" },
+        t = { "Title Case" },
+      },
+    },
   })
 end
 

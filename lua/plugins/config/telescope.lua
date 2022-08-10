@@ -2,13 +2,9 @@ local telescope_status_ok, telescope = pcall(require, "telescope")
 if not telescope_status_ok then return end
 
 local actions = require("telescope.actions")
--- local previewers = require("telescope.previewers")
--- local trouble = require("trouble.providers.telescope")
--- local sorters = require("telescope.sorters")
 
-telescope.load_extension("file_browser", { grouped = true })
+telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
--- telescope.load_extension("ui-select")
 
 telescope.setup({
   defaults = {
@@ -33,7 +29,8 @@ telescope.setup({
         case_mode = "smart_case",
       },
       file_browser = {
-        files = false,
+        files = true,
+        grouped = true,
       },
       ["ui-select"] = {
         require("telescope.themes").get_dropdown({

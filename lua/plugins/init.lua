@@ -46,6 +46,10 @@ return packer.startup(function(use)
     "nvim-lua/plenary.nvim",
   }
 
+  -- use {
+  --   "stevearc/dressing.nvim",
+  -- }
+
 
 
   ----------------------------
@@ -117,6 +121,13 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("plugins.config.bufferline")
+    end,
+  }
+
+  use {
+    'b0o/incline.nvim',
+    config = function()
+      require('incline').setup()
     end,
   }
 
@@ -232,7 +243,6 @@ return packer.startup(function(use)
   ----------------------------
   -- Telescope
   ----------------------------
-
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -252,7 +262,6 @@ return packer.startup(function(use)
   ----------------------------
   -- LSP & Friends
   ----------------------------
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -275,55 +284,41 @@ return packer.startup(function(use)
 
       -- Other mason stuff
       { "jose-elias-alvarez/null-ls.nvim" },
-
     },
     config = function()
       require("plugins.config.lsp-zero")
     end,
   }
 
-  -- use {
-  --   "williamboman/mason.nvim",
-  --   requires = {
-  --     "williamboman/mason-lspconfig.nvim",
-  --     "neovim/nvim-lspconfig",
-  --     "jose-elias-alvarez/null-ls.nvim",
-  --   },
-  --   config = function()
-  --     require("plugins.config.mason")
-  --     require("plugins.config.lsp")
-  --   end,
-  -- }
-  --
-  -- use {
-  --   "folke/trouble.nvim",
-  --   config = function()
-  --     require("plugins.config.trouble")
-  --   end,
-  -- }
+  use {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function()
+      require("plugins.config.lsp-signature")
+    end,
+  }
+
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require("plugins.config.goto-preview")
+    end
+  }
 
 
 
   ----------------------------
-  -- Completion
+  -- Treesitter
   ----------------------------
-  -- use {
-  --   "hrsh7th/nvim-cmp",
-  --   requires = {
-  --     "hrsh7th/cmp-buffer",
-  --     "hrsh7th/cmp-path",
-  --     "hrsh7th/cmp-cmdline",
-  --     "hrsh7th/cmp-nvim-lua",
-  --     "hrsh7th/cmp-nvim-lsp",
-  --     "hrsh7th/cmp-nvim-lsp-document-symbol",
-  --     "saadparwaiz1/cmp_luasnip",
-  --     "L3MON4D3/LuaSnip",
-  --     "rafamadriz/friendly-snippets",
-  --   },
-  --   config = function()
-  --     require("plugins.config.cmp")
-  --   end,
-  -- }
+
+  use {
+    "christianrondeau/vim-base64",
+    config = function()
+      require("plugins.config.vim-base64")
+    end
+  }
+
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
