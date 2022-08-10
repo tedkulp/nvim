@@ -11,7 +11,7 @@ neogit.setup({
 })
 
 wk.register({
-  g = {
-    S = { "<cmd>lua require('neogit').open({ kind='split' })<cr>", "Neogit Status" },
-  }, 
+  ["<leader>g"] = {
+    n = { "<cmd>lua require('neogit').open({ kind='split' })<cr>", "Neogit Status" },
+  },
 })
