@@ -77,22 +77,6 @@ if wk_status_ok then
     },
     ["<leader>c"] = { "<cmd>bd<CR>", "Close Buffer" },
     ["K"] = { vim.lsp.buf.hover, "Show hover" },
-    c = {
-      r = {
-        name = 'Coerce Case',
-        c = { "camelCase" },
-        m = { "MixedCase" },
-        ['_'] = { "snake_case" },
-        s = { "snake_case" },
-        u = { "SNAKE_UPPERCASE" },
-        U = { "SNAKE_UPPERCASE" },
-        ['-'] = { "dash-case" },
-        k = { "kebab-case" },
-        ['.'] = { "dot.case" },
-        [' '] = { "space case" },
-        t = { "Title Case" },
-      },
-    },
   })
 end
 

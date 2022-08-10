@@ -205,6 +205,9 @@ return packer.startup(function(use)
 
   use {
     "tpope/vim-abolish",
+    config = function()
+      require("plugins.config.abolish")
+    end,
   }
 
   use {
