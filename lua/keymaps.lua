@@ -14,6 +14,9 @@ keymap("", "<Space>", "<Nop>", opts)
 -- I hit f1 way too much - just use :h
 vim.keymap.set("n", "<f1>", "<nop>")
 
+-- I've never created a macro in my life -- I'd like to move this to another key
+vim.keymap.set("n", "q", "<nop>")
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
