@@ -95,10 +95,10 @@ lsp.setup_nvim_cmp({
 
 lsp_format.setup({})
 
-lsp.on_attach(function(client, _)
-  -- TODO: Should we be filtering this to certain file types?
-  -- lsp_format.on_attach(client)
-end)
+-- lsp.on_attach(function(client, _)
+--   -- TODO: Should we be filtering this to certain file types?
+--   lsp_format.on_attach(client)
+-- end)
 
 lsp.setup()
 
