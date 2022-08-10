@@ -14,8 +14,8 @@ vim.api.nvim_create_augroup("_general", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = "_general",
   pattern = "qf,help,man,lspinfo,startuptime,neotest-summary,Telescope*",
-  callback = function(args)
-    print(vim.inspect(args.match))
+  callback = function(--[[ args ]])
+    -- print(vim.inspect(args.match))
     vim.cmd("nnoremap <silent><buffer> q :close!<cr>")
   end,
 })
