@@ -248,6 +248,25 @@ return packer.startup(function(use)
     end,
   }
 
+  -----------------------------------------------------------------------------
+  -- Languages
+  -----------------------------------------------------------------------------
+
+  use {
+    "iamcco/markdown-preview.nvim",
+    -- ft = "markdown",
+    -- cmd = { "MarkdownPreview" },
+    config = function()
+      require("plugins.config.markdown")
+    end,
+  }
+
+  use {
+    "cuducos/yaml.nvim",
+    ft = { "yaml" },
+    requires = { "nvim-treesitter/nvim-treesitter" },
+  }
+
 
 
   -----------------------------------------------------------------------------
