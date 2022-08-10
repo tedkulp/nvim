@@ -13,7 +13,7 @@ if not status_ok then return end
 vim.api.nvim_create_augroup("_packer_user_config", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = "_packer_user_config",
-  pattern = { "*/plugins/**.lua", "*/keymaps.lua" },
+  pattern = { "*/plugins/**.lua", "*/keymaps.lua", "*/autocommands.lua" },
   callback = function()
     vim.cmd("source <afile>")
     -- vim.cmd("PackerSync")
@@ -38,12 +38,24 @@ packer.init({
 })
 
 return packer.startup(function(use)
+
+  ----------------------------
+  -- Core Stuff
+  ----------------------------
+
   use {
     "wbthomason/packer.nvim",
   }
 
   use {
     "nvim-lua/plenary.nvim",
+  }
+
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end
   }
 
   -- use {
@@ -85,6 +97,7 @@ return packer.startup(function(use)
   ----------------------------
   -- Navigation
   ----------------------------
+
   use {
     "folke/which-key.nvim", -- Do this at the top so we can use it for plugin bindings
     enter = "VimEnter",
@@ -136,6 +149,7 @@ return packer.startup(function(use)
   ----------------------------
   -- Look and Feel and Editing
   ----------------------------
+
   use {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -220,9 +234,30 @@ return packer.startup(function(use)
 
 
 
+  -----------------------------------------------------------------------------
+  -- Git
+  -----------------------------------------------------------------------------
+
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function() require('gitsigns').setup() end,
+    event = "BufReadPre",
+  }
+
+  use {
+    "sindrets/diffview.nvim",
+    config = function() require("plugins.config.diffview") end,
+    requires = "nvim-lua/plenary.nvim",
+    cmd = "DiffviewOpen",
+  }
+
+
+
   ----------------------------
   -- Treesitter
   ----------------------------
+
   use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
@@ -243,6 +278,7 @@ return packer.startup(function(use)
   ----------------------------
   -- Telescope
   ----------------------------
+
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -262,6 +298,7 @@ return packer.startup(function(use)
   ----------------------------
   -- LSP & Friends
   ----------------------------
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -269,6 +306,7 @@ return packer.startup(function(use)
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+      { "lukas-reineke/lsp-format.nvim" },
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },
@@ -308,7 +346,7 @@ return packer.startup(function(use)
 
 
   ----------------------------
-  -- Treesitter
+  -- Other Stuff
   ----------------------------
 
   use {

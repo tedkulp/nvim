@@ -27,10 +27,10 @@ comment.setup {
   end,
 }
 
-wk.register({
-  ["<leader>/"] = { "<ESC><CMD>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" },
-}, { mode = "n" })
-
-wk.register({
-  ["<leader>/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
-}, { mode = "v" })
+-- wk.register({
+--   ["<leader>/"] = { "<ESC><CMD>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" },
+-- }, { mode = "n" })
+--
+-- wk.register({
+--   ["<leader>/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+-- }, { mode = "v" })

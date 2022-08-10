@@ -50,7 +50,8 @@ if wk_status_ok then
   wk.register({
     ["<leader><leader>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>,"] = { "<cmd>Telescope buffers<CR>", "Find Buffers" },
-    ["<leader>."] = { "<cmd>Telescope live_grep<CR>", "File Search" },
+    ["<leader>/"] = { "<cmd>Telescope live_grep<CR>", "File Search" },
+    ["<leader>."] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>`"] = { ":edit #<CR>", "Last Buffer" },
     ["<leader>l"] = {
       name = "+LSP",

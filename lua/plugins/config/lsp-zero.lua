@@ -20,6 +20,9 @@ if not cmp_status_ok then return end
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then return end
 
+local lsp_format_status_ok, lsp_format = pcall(require, "lsp-format")
+if not lsp_format_status_ok then return end
+
 local kind_icon = {
   Text = "",
   Method = "",
@@ -90,11 +93,19 @@ lsp.setup_nvim_cmp({
   },
 })
 
+lsp_format.setup({})
+
+lsp.on_attach(function(client, _)
+  -- TODO: Should we be filtering this to certain file types?
+  -- lsp_format.on_attach(client)
+end)
+
 lsp.setup()
 
 null_ls.setup({
   sources = {
     null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.diagnostics.eslint_d,
     -- null_ls.builtins.diagnostics.jsonlint,
     -- null_ls.builtins.diagnostics.luacheck,
