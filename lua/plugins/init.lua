@@ -144,6 +144,12 @@ return packer.startup(function(use)
     end,
   }
 
+  -- Better quick list
+  use {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+  }
+
 
 
   ----------------------------
