@@ -1,3 +1,4 @@
+-- Command to toggle on/off the quickfix window
 vim.cmd [[
   function! QuickFixToggle()
     if empty(filter(getwininfo(), 'v:val.quickfix'))

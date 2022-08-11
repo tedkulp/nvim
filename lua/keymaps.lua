@@ -7,15 +7,14 @@ if not wk_status_ok then return end
 -- All hail <space>, the one true leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-keymap("", "<Space>", "<Nop>", opts)
 
 -- NORMAL
 
 -- I hit f1 way too much - just use :h
-vim.keymap.set("n", "<f1>", "<nop>")
+keymap("n", "<f1>", "<nop>")
 
 -- I've never created a macro in my life -- I'd like to move this to another key
-vim.keymap.set("n", "q", "<nop>")
+keymap("n", "q", "<nop>")
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -27,30 +26,21 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<S-l>", ":bnext<cr>", opts)
 keymap("n", "<S-h>", ":bprev<cr>", opts)
 
--- These is in autocommands.lua
--- Toggle the quickfix window
-keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
+-- Move text up and down
+keymap("n", "<A-j>", ":m +1<CR>==", opts)
+keymap("n", "<A-k>", ":m -2<CR>==", opts)
 
 -- Blatently stolen from emacs
 keymap("n", "<A-x>", "<cmd>Telescope commands<cr>", opts)
 
-vim.cmd [[
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
-    else
-      cclose
-    endif
-  endfunction
-]]
+-- These is in autocommands.lua
+-- Toggle the quickfix window
+keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
 
-keymap("n", "<c-q>", "<cmd>:call QuickFixToggle()<cr>", opts)
-
+-- Non plugin which-key mappings (Telescope and Packer don't count)
 if wk_status_ok then
-  -- Clear highlights
-  wk.register({ ["<leader>h"] = { "<cmd>nohlsearch<cr>", "Clear Search" } })
-
   wk.register({
+    ["<leader>h"] = { "<cmd>nohlsearch<cr>", "Clear Search" },
     ["<leader><leader>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>,"] = { "<cmd>Telescope buffers<CR>", "Find Buffers" },
     ["<leader>/"] = { "<cmd>Telescope live_grep<CR>", "File Search" },
@@ -79,12 +69,26 @@ if wk_status_ok then
       v = { "<cmd>vsplit<cr>", "Split Vertical" },
     },
     ["<leader>c"] = { "<cmd>bd<CR>", "Close Buffer" },
+    ["gr"] = { "Replace without yank" },
+
+    -- LSP Keymaps -- removing conflicts - adding readable descriptions
     ["K"] = { vim.lsp.buf.hover, "Show hover" },
+    ["gd"] = { vim.lsp.buf.definition, "Definition" },
+    ["gD"] = { vim.lsp.buf.declaration, "Declaration" },
+    ["go"] = { vim.lsp.buf.type_definition, "Type Definition" },
+    ["<F2>"] = { vim.lsp.buf.rename, "Rename" },
+    ["<F4>"] = { vim.lsp.buf.code_action, "Code Action" },
   })
 end
 
 -- VISUAL
 
 -- Move text up and down
-vim.keymap.set("v", "<A-j>", ":m .+1<CR>==", opts)
-vim.keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+
+if wk_status_ok then
+  wk.register({
+    ["gr"] = { "Replace without yank" },
+  }, { mode = "v" })
+end

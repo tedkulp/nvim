@@ -54,6 +54,7 @@ local kind_icon = {
 lsp.preset("recommended")
 
 lsp.set_preferences({
+  set_lsp_keymaps = false,
   sign_icons = {
     error = "",
     warn = "",
