@@ -8,6 +8,11 @@ vim.cmd [[
   endfunction
 ]]
 
+-- Highlight text that was yanked
+vim.cmd [[
+  au TextYankPost * silent! lua vim.highlight.on_yank()
+]]
+
 vim.api.nvim_create_augroup("_general", { clear = true })
 
 -- Close different buffers with `q`
