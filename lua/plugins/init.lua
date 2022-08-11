@@ -312,11 +312,12 @@ return packer.startup(function(use)
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-project.nvim",
+
     },
     config = function()
       require("plugins.config.telescope")
     end,
-    event = "BufEnter",
   }
 
 
@@ -382,6 +383,32 @@ return packer.startup(function(use)
     config = function()
       require("plugins.config.markdown")
     end,
+  }
+
+
+
+  -----------------------------------------------------------------------------
+  -- Knowledge Base
+  -----------------------------------------------------------------------------
+
+  use {
+    "nvim-neorg/neorg",
+    config = function()
+      require("plugins.config.neorg")
+    end,
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  }
+
+  use {
+    "renerocksai/telekasten.nvim",
+    config = function()
+      require("plugins.config.telekasten")
+    end,
+    require = {
+      "nvim-telescope/telescope.nvim",
+    },
   }
 
 
