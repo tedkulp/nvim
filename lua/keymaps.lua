@@ -59,7 +59,10 @@ if wk_status_ok then
     ["<leader>p"] = {
       name = "+Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
-      s = { "<cmd>PackerSync<cr>", "Sync Plugins" },
+      i = { "<cmd>PackerInstall<cr>", "Install" },
+      s = { "<cmd>PackerSync<cr>", "Sync" },
+      S = { "<cmd>PackerStatus<cr>", "Status" },
+      u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
     ["<leader>b"] = {
       name = "+Buffer",
@@ -69,6 +72,13 @@ if wk_status_ok then
       v = { "<cmd>vsplit<cr>", "Split Vertical" },
     },
     ["<leader>c"] = { "<cmd>bd<CR>", "Close Buffer" },
+    ["<leader>g"] = {
+      name = "+Git",
+      o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+      b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+      c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+      C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
+    },
     ["gr"] = { "Replace without yank" },
 
     -- LSP Keymaps -- removing conflicts - adding readable descriptions
