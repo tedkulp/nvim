@@ -401,6 +401,13 @@ return packer.startup(function(use)
     end
   }
 
+  -- Replace with register and don"t copy (use gr instead of r)
+  use {
+    "vim-scripts/ReplaceWithRegister",
+    event = "BufEnter",
+  }
+
+
 
 
   -- Automatically set up your configuration after cloning packer.nvim
