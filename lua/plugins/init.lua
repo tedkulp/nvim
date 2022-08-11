@@ -403,6 +403,13 @@ return packer.startup(function(use)
     event = "BufEnter",
   }
 
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = 'v2.*',
+    config = function()
+      require("plugins.config.toggleterm")
+    end
+  }
 
 
 

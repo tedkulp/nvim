@@ -92,3 +92,14 @@ if wk_status_ok then
     ["gr"] = { "Replace without yank" },
   }, { mode = "v" })
 end
+
+
+----------------------------
+-- TERMINAL
+----------------------------
+
+-- Better window navigation
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
