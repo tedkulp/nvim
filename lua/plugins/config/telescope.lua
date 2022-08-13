@@ -13,7 +13,9 @@ local dirs_to_include = { "~/src", "~/src/tmp", "~/src/omuras/code", "~/org" }
 local base_dirs = {}
 
 -- Add our config location to the project list
-table.insert(dirs_to_include, 1, utils.get_path(utils.get_path(vim.env.MYVIMRC)))
+if vim.env.MYVIMRC then
+  table.insert(dirs_to_include, 1, utils.get_path(utils.get_path(vim.env.MYVIMRC)))
+end
 
 for _, the_dir in ipairs(dirs_to_include) do
   the_dir = string.gsub(the_dir, "~", os.getenv("HOME") or '')
