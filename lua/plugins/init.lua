@@ -248,6 +248,13 @@ return packer.startup(function(use)
     end,
   }
 
+  use {
+    "mizlan/iswap.nvim",
+    config = function ()
+      require("plugins.config.iswap")
+    end
+  }
+
 
 
   -----------------------------------------------------------------------------
