@@ -6,8 +6,11 @@ if not wk_status_ok then return end
 
 toggleterm.setup()
 
+-- Not sure why toggleterm isn't doing this automatically
+vim.cmd("autocmd BufEnter * if &buftype ==# 'terminal' | startinsert! | endif")
+
 -- Non-leader shortcut (blasphemy, I know!)
-vim.keymap.set("n", "<A-q>", "<cmd>ToggleTerm<cr>")
+vim.keymap.set("n", "<A-q>", "<cmd>ToggleTerm<cr><cmd>startinsert<cr>")
 
 -- Shortcut to toggle terminal without having to nav out
 vim.keymap.set("t", "<A-q>", "<C-\\><C-N><cmd>ToggleTerm<cr>")
