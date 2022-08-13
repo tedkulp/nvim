@@ -30,4 +30,4 @@ cd pvim
 ./pvim
 ```
 
-_TODO: Make a curl script_
+_**TODO:** Make a curl script_
