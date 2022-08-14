@@ -31,3 +31,15 @@ cd pvim
 ```
 
 _**TODO:** Make a curl script_
+
+## Docker Version
+
+There is also an automated build of this config built along with the latest stable
+version of neovim. Sometimes it's just easier to use Docker to do some quick editing
+on a strang machine.
+
+It defaults to the `/data` directory.  You can start it with soemthing like
+
+```
+docker run --rm -it -v $(pwd):/data tedkulp/lvim
+```
