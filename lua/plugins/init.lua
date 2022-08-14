@@ -29,7 +29,7 @@ packer.init({
     end,
     prompt_border = "single",
   },
-  max_jobs = 50,
+  --[[ max_jobs = 50, ]]
   git = {
     clone_timeout = 600,
   },
