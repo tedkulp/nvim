@@ -41,5 +41,5 @@ on a strang machine.
 It defaults to the `/data` directory.  You can start it with soemthing like
 
 ```
-docker run --rm -it -v $(pwd):/data tedkulp/lvim
+docker run --rm -it -v $(pwd):/data tedkulp/tvim
 ```
