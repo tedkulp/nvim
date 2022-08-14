@@ -1,6 +1,9 @@
 local bufferline_status_ok, bufferline = pcall(require, "bufferline")
 if not bufferline_status_ok then return end
 
+local scope_status_ok, scope = pcall(require, "scope")
+if not scope_status_ok then return end
+
 local filtered_types = { "qf" }
 
 local function in_table(tbl, item)
@@ -28,11 +31,13 @@ end
 
 bufferline.setup({
   options = {
+    mode = "buffers",
     show_buffer_close_icons = false,
     show_close_icons = false,
     show_tab_indicators = true,
     numbers = "ordinal",
     separator_style = "slant",
+    offsets = { { filetype = "neo-tree", text = "", padding = 1 } },
     diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
     diagnostics_indicator = diagnostics_indicator,
@@ -45,3 +50,5 @@ bufferline.setup({
     end,
   },
 })
+
+scope.setup()

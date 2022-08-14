@@ -131,7 +131,10 @@ return packer.startup(function(use)
   use {
     "akinsho/bufferline.nvim",
     tag = "v2.*",
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+      "tiagovla/scope.nvim",
+    },
     config = function()
       require("plugins.config.bufferline")
     end,
@@ -250,7 +253,7 @@ return packer.startup(function(use)
 
   use {
     "mizlan/iswap.nvim",
-    config = function ()
+    config = function()
       require("plugins.config.iswap")
     end
   }
