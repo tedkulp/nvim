@@ -460,6 +460,13 @@ return packer.startup(function(use)
     end,
   }
 
+  use {
+    'chentoast/marks.nvim',
+    config = function()
+      require("plugins.config.marks")
+    end,
+  }
+
 
 
   -- Automatically set up your configuration after cloning packer.nvim
