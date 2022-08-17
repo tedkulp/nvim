@@ -450,6 +450,16 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      { 'kkharji/sqlite.lua', module = 'sqlite' },
+    },
+    config = function()
+      require("plugins.config.neoclip")
+    end,
+  }
+
 
 
   -- Automatically set up your configuration after cloning packer.nvim
