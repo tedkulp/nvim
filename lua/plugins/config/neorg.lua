@@ -10,7 +10,17 @@ if not wk_status_ok then return end
 neorg.setup({
   load = {
     ["core.defaults"] = {},
-    ["core.norg.concealer"] = {},
+    ["core.norg.concealer"] = {
+      config = {
+        dim_code_blocks = {
+          enabled = true,
+          content_only = true,
+          adaptive = true,
+        },
+        icon_preset = "varied",
+        markup_preset = "dimmed",
+      },
+    },
     ["core.norg.completion"] = {
       config = {
         engine = "nvim-cmp",
