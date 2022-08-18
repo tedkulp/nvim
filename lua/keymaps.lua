@@ -17,10 +17,10 @@ keymap("n", "<f1>", "<nop>")
 keymap("n", "q", "<nop>")
 
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-h>", "<cmd>wincmd h<cr>", opts)
+keymap("n", "<C-j>", "<cmd>wincmd j<cr>", opts)
+keymap("n", "<C-k>", "<cmd>wincmd k<cr>", opts)
+keymap("n", "<C-l>", "<cmd>wincmd l<cr>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<cr>", opts)
@@ -123,7 +123,16 @@ end
 ----------------------------
 
 -- Better window navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
+vim.api.nvim_create_augroup("_terminal", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = "_terminal",
+  pattern = "term://*",
+  callback = function()
+    local opts = { noremap = true, silent = true }
+    keymap("t", "<C-n>", "<c-\\><c-n>", opts)
+    keymap("t", "<C-h>", "<cmd>wincmd h<cr>", opts)
+    keymap("t", "<C-j>", "<cmd>wincmd j<cr>", opts)
+    keymap("t", "<C-k>", "<cmd>wincmd k<cr>", opts)
+    keymap("t", "<C-l>", "<cmd>wincmd l<cr>", opts)
+  end,
+})

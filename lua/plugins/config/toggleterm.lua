@@ -4,22 +4,26 @@ if not toggleterm_status_ok then return end
 local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then return end
 
-toggleterm.setup()
+local HORIZ_SIZE = 20
+local VERT_SIZE = 80
 
--- Not sure why toggleterm isn't doing this automatically
-vim.cmd("autocmd BufEnter * if &buftype ==# 'terminal' | startinsert! | endif")
-
--- Non-leader shortcut (blasphemy, I know!)
-vim.keymap.set("n", "<A-q>", "<cmd>ToggleTerm<cr><cmd>startinsert<cr>")
-
--- Shortcut to toggle terminal without having to nav out
-vim.keymap.set("t", "<A-q>", "<C-\\><C-N><cmd>ToggleTerm<cr>")
+toggleterm.setup({
+  size = function(term)
+    if (term.direction == "horizontal") then
+      return HORIZ_SIZE
+    elseif (term.direction == "vertical") then
+      return VERT_SIZE
+    end
+  end,
+  open_mapping = [[<A-q>]],
+  persist_mode = true,
+})
 
 wk.register({
   ["<leader>t"] = {
     name = "+Terminal",
-    h = { "<cmd>ToggleTerm direction=horizontal size=15<cr>", "Horizontal Terminal" },
-    t = { "<cmd>ToggleTerm direction=horizontal size=15<cr>", "Horizontal Terminal" },
-    v = { "<cmd>ToggleTerm direction=vertical size=60<cr>", "Vertical Terminal" },
+    h = { "<cmd>1ToggleTerm direction=horizontal size=" .. HORIZ_SIZE .. "<cr>", "Horizontal Terminal" },
+    t = { "<cmd>1ToggleTerm direction=horizontal size=" .. HORIZ_SIZE .. "<cr>", "Horizontal Terminal" },
+    v = { "<cmd>1ToggleTerm direction=vertical size=" .. VERT_SIZE .. "<cr>", "Vertical Terminal" },
   }
 })
