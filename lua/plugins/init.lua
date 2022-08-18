@@ -153,6 +153,14 @@ return packer.startup(function(use)
     ft = "qf",
   }
 
+  use {
+    's1n7ax/nvim-window-picker',
+    tag = 'v1.*',
+    config = function()
+      require("window-picker").setup()
+    end,
+  }
+
 
 
   ----------------------------
