@@ -362,6 +362,7 @@ return packer.startup(function(use)
       { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-copilot", },
 
       -- Snippets
       { "L3MON4D3/LuaSnip" },
@@ -471,6 +472,13 @@ return packer.startup(function(use)
     'chentoast/marks.nvim',
     config = function()
       require("plugins.config.marks")
+    end,
+  }
+
+  use {
+    "github/copilot.vim",
+    config = function()
+      require("plugins.config.copilot")
     end,
   }
 
