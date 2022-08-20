@@ -1,4 +1,4 @@
-# tvim (needs a better name)
+# Ted's Neovim Config
 
 This is my personal config. It's a little plugin heavy, and very inspired by
 Lunarvim. But if you want to mess with it, go for it.
@@ -11,7 +11,7 @@ Close this into your nvim config directory.  Something like:
 
 ```
 mkdir -p ~/.config
-git clone https://github.com/tedkulp/tvim ~/.config/nvim
+git clone https://github.com/tedkulp/nvim ~/.config/nvim
 ```
 
 After starting neovim, run `:PackerSync` and `:PackerCompile`. Restart nvim
@@ -25,7 +25,7 @@ server and still want your config to work.
 
 ```
 git clone https://github.com/RoryNesbitt/pvim
-git clone https://github.com/tedkulp/tvim pvim/config
+git clone https://github.com/tedkulp/nvim pvim/config
 cd pvim
 ./pvim
 ```
@@ -41,5 +41,5 @@ on a strang machine.
 It defaults to the `/data` directory.  You can start it with soemthing like
 
 ```
-docker run --rm -it -v $(pwd):/data tedkulp/tvim
+docker run --rm -it -v $(pwd):/data tedkulp/nvim
 ```
