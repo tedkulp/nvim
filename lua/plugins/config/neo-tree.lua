@@ -46,6 +46,7 @@ neotree.setup({
 vim.cmd("highlight NeoTreeTitleBar guifg=#333333")
 
 wk.register({ ["<leader>e"] = { ":Neotree toggle reveal<cr>", "Toggle Explorer" } })
+wk.register({ ["<leader>be"] = { ":Neotree toggle buffers<cr>", "Buffer Explorer" } })
 wk.register({
   ["<leader>g"] = {
     S = { ":Neotree toggle git_status<cr>", "Toggle Git Status" },
