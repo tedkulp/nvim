@@ -113,6 +113,9 @@ return packer.startup(function(use)
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
+      {
+        's1n7ax/nvim-window-picker',
+      },
     },
     config = function()
       require("plugins.config.neo-tree")
@@ -151,14 +154,6 @@ return packer.startup(function(use)
   use {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
-  }
-
-  use {
-    's1n7ax/nvim-window-picker',
-    tag = 'v1.*',
-    config = function()
-      require("window-picker").setup()
-    end,
   }
 
 
