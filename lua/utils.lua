@@ -4,7 +4,7 @@ local M = {}
 --@param path (string) path to check
 --@returns (bool)
 function M.is_file(path)
-  local stat = uv.fs_stat(path)
+  local stat = vim.loop.fs_stat(path)
   return stat and stat.type == "file" or false
 end
 

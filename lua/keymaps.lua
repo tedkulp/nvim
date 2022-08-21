@@ -130,11 +130,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   group = "_terminal",
   pattern = "term://*",
   callback = function()
-    local opts = { noremap = true, silent = true }
-    keymap("t", "<C-n>", "<c-\\><c-n>", opts)
-    keymap("t", "<C-h>", "<cmd>wincmd h<cr>", opts)
-    keymap("t", "<C-j>", "<cmd>wincmd j<cr>", opts)
-    keymap("t", "<C-k>", "<cmd>wincmd k<cr>", opts)
-    keymap("t", "<C-l>", "<cmd>wincmd l<cr>", opts)
+    local _opts = { noremap = true, silent = true }
+    keymap("t", "<C-n>", "<c-\\><c-n>", _opts)
+    keymap("t", "<C-h>", "<cmd>wincmd h<cr>", _opts)
+    keymap("t", "<C-j>", "<cmd>wincmd j<cr>", _opts)
+    keymap("t", "<C-k>", "<cmd>wincmd k<cr>", _opts)
+    keymap("t", "<C-l>", "<cmd>wincmd l<cr>", _opts)
   end,
 })
