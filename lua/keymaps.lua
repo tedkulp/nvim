@@ -53,6 +53,8 @@ if wk_status_ok then
       d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
       f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
+      j = { vim.diagnostic.goto_next, "Next Diagnostic", },
+      k = { vim.diagnostic.goto_prev, "Prev Diagnostic", },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
       w = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" },
     },
