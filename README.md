@@ -4,6 +4,7 @@ This is my personal config. It's a little plugin heavy, and very inspired by
 Lunarvim. But if you want to mess with it, go for it.
 
 _**Note:** This config assumes you're using a Nerd Font of some sort.  Please install one._
+_**Note:** This config relies on 0.8+ versions of Neovim. Use at your own risk if it's something older._
 
 ## Install
 

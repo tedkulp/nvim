@@ -26,6 +26,8 @@ neorg.setup({
         engine = "nvim-cmp",
       },
     },
+    ["core.export"] = {},
+    ["core.export.markdown"] = {},
   }
 })
 
