@@ -75,9 +75,9 @@ cmp_mappings["<C-Space>"] = cmp.mapping(cmp.mapping(cmp.mapping.complete({}), { 
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
-  sources = {
-    { name = 'copilot' },
-  },
+  --[[ sources = { ]]
+  --[[   { name = 'copilot' }, ]]
+  --[[ }, ]]
   formatting = {
     fields = { "menu", "abbr", "kind" },
 
