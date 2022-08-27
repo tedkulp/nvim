@@ -60,16 +60,56 @@ telescope.setup({
       base_dirs = base_dirs,
       hidden_files = false,
     },
+    tele_tabby = {
+      use_highlighter = true,
+    },
+    zoxide = {
+      config = {
+        mappings = {
+          ["<C-t>"] = {
+            action = function()
+              vim.cmd("tabnew")
+            end,
+            after_action = function(selection)
+              vim.cmd("tcd " .. selection.path)
+            end,
+          },
+        },
+      },
+    },
   },
 })
 
 telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
 telescope.load_extension("project")
+telescope.load_extension("tele_tabby")
+telescope.load_extension("zoxide")
 
 wk.register({
   ["<leader>P"] = {
     "<cmd>Telescope project display_type=full<cr>",
     "Project List",
+  },
+  ["<leader>T"] = {
+    function()
+      local opts = require("telescope.themes").get_dropdown {
+        winblend = 10,
+        border = true,
+        previewer = false,
+        shorten_path = false,
+        heigth = 20,
+        width = 120
+      }
+      require('telescope').extensions.tele_tabby.list(opts)
+    end,
+    --[[ "<cmd>Telescope tele_tabby list<cr>", ]]
+    "Tab List",
+  },
+  ["<leader>z"] = {
+    function()
+      require('telescope').extensions.zoxide.list()
+    end,
+    "Find Directory w/ 'z'",
   },
 })

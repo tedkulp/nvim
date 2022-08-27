@@ -323,12 +323,15 @@ return packer.startup(function(use)
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
+      "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-project.nvim",
-
+      --[[ "~/src/personal/telescope-tele-tabby.nvim", ]]
+      "tedkulp/telescope-tele-tabby.nvim",
+      "jvgrootveld/telescope-zoxide",
     },
     config = function()
       require("plugins.config.telescope")
