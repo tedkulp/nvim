@@ -51,7 +51,7 @@ if wk_status_ok then
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Actions" },
       A = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
       d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
-      f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+      f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       j = { vim.diagnostic.goto_next, "Next Diagnostic", },
       k = { vim.diagnostic.goto_prev, "Prev Diagnostic", },

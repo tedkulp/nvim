@@ -19,4 +19,3 @@ mason_lspconfig.setup({
     "sumneko_lua",
   }
 })
-
