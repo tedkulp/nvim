@@ -10,7 +10,7 @@ _**Note:** This config relies on 0.8+ versions of Neovim. Use at your own risk i
 
 Close this into your nvim config directory.  Something like:
 
-```
+``` bash
 mkdir -p ~/.config
 git clone https://github.com/tedkulp/nvim ~/.config/nvim
 ```
@@ -24,7 +24,7 @@ The [pvim](https://github.com/RoryNesbitt/pvim) script allows you to run neovim 
 a portable manner (on Linux -- it uses an appimage), in case you're on some remote
 server and still want your config to work.
 
-```
+``` bash
 git clone https://github.com/RoryNesbitt/pvim
 git clone https://github.com/tedkulp/nvim pvim/config
 cd pvim
@@ -37,10 +37,10 @@ _**TODO:** Make a curl script_
 
 There is also an automated build of this config built along with the latest stable
 version of neovim. Sometimes it's just easier to use Docker to do some quick editing
-on a strang machine.
+on a strange machine.
 
-It defaults to the `/data` directory.  You can start it with soemthing like
+It defaults to the `/data` directory.  You can start it with something like
 
-```
+``` bash
 docker run --rm -it -v $(pwd):/data tedkulp/nvim
 ```
