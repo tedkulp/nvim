@@ -1,9 +1,6 @@
 local status_ok, neoclip = pcall(require, "neoclip")
 if not status_ok then return end
 
-local wk_status_ok, wk = pcall(require, "which-key")
-if not wk_status_ok then return end
-
 neoclip.setup({
   keys = {
     telescope = {
@@ -29,4 +26,5 @@ neoclip.setup({
   },
 })
 
-vim.keymap.set("i", "<c-o>", "<cmd>lua require('telescope').extensions.neoclip.default()<cr>", { noremap = true, silent = true })
+vim.keymap.set("i", "<c-o>", "<cmd>lua require('telescope').extensions.neoclip.default()<cr>",
+  { noremap = true, silent = true })

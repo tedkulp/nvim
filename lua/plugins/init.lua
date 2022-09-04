@@ -226,7 +226,7 @@ return packer.startup(function(use)
   use {
     "Akianonymus/nvim-colorizer.lua",
     config = function()
-      require("colorizer").setup()
+      require("colorizer").setup({})
     end,
   }
 
