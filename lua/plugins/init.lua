@@ -352,6 +352,7 @@ return packer.startup(function(use)
       { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-emoji" },
       --[[ { "hrsh7th/cmp-copilot", }, ]]
 
       -- Snippets
@@ -464,16 +465,6 @@ return packer.startup(function(use)
     config = function()
       require("plugins.config.marks")
     end,
-  }
-
-  use {
-    "ziontee113/icon-picker.nvim",
-    config = function()
-      require("plugins.config.icon-picker")
-    end,
-    requires = {
-      "stevearc/dressing.nvim",
-    },
   }
 
   --[[ use { ]]
