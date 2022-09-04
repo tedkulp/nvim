@@ -73,11 +73,12 @@ cmp_mappings["<C-k>"] = cmp.mapping.select_prev_item()
 cmp_mappings["<C-j>"] = cmp.mapping.select_next_item()
 cmp_mappings["<C-Space>"] = cmp.mapping(cmp.mapping(cmp.mapping.complete({}), { "i", "c" }))
 
+local cmp_sources = lsp.defaults.cmp_sources()
+table.insert(cmp_sources, 1, { name = 'orgmode' })
+
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
-  --[[ sources = { ]]
-  --[[   { name = 'copilot' }, ]]
-  --[[ }, ]]
+  sources = cmp_sources,
   formatting = {
     fields = { "menu", "abbr", "kind" },
 
