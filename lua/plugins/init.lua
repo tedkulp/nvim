@@ -9,16 +9,22 @@ end
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then return end
 
--- Run packer sync every time the config changes
 vim.api.nvim_create_augroup("_packer_user_config", { clear = true })
+
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = "_packer_user_config",
-  pattern = { "*/plugins/**.lua", "*/keymaps.lua", "*/autocommands.lua" },
+  pattern = { "*/plugins/config/**.lua", "*/keymaps.lua", "*/autocommands.lua" },
   callback = function()
     vim.cmd("source <afile>")
-    -- vim.cmd("PackerSync")
     vim.cmd("PackerCompile")
-    -- print("Packer Recompiled")
+  end
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = "_packer_user_config",
+  pattern = { "*/plugins/init.lua" },
+  callback = function()
+    vim.cmd("source <afile>")
   end
 })
 
