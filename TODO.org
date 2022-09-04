@@ -1,0 +1,20 @@
+* TODO List
+
+These are things I need to do to make this thing usable.
+
+** Status Bar
+
+- [ ] Show count of search results
+- [ ] Show current Treesitter or LSP server
+
+** Tabs
+
+- [ ] Opening a project in a tab requires opening an existing file
+- [ ] Closing the last file in a tab will close Neovim
+- [ ] Should we take this over? [[https://github.com$/nvim-telescope/telescope-project.nvim/pull/103][Pull Request]]
+
+** Plugins
+
+- [ ] Make copilot able to be toggled
+- [ ] Make other plugins able to be toggled?
+
