@@ -186,32 +186,6 @@ return packer.startup(function(use)
   }
 
   use {
-    "andymass/vim-matchup",
-    event = "CursorMoved",
-    config = function()
-      vim.g.loaded_matchit = 1
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true,
-        },
-      })
-    end,
-  }
-
-  use {
-    "p00f/nvim-ts-rainbow",
-    event = "BufRead",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        rainbow = {
-          enable = true,
-        },
-      })
-    end,
-  }
-
-  use {
     "tpope/vim-repeat",
   }
 
@@ -231,10 +205,6 @@ return packer.startup(function(use)
     config = function()
       require("plugins.config.comment")
     end,
-    requires = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      "nvim-treesitter/nvim-treesitter",
-    },
     event = "BufEnter",
   }
 
@@ -319,6 +289,8 @@ return packer.startup(function(use)
       "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-textsubjects",
       "nvim-treesitter/nvim-treesitter-refactor",
+      "nvim-treesitter/nvim-treesitter-context",
+      "p00f/nvim-ts-rainbow",
     },
     run = ":TSUpdate",
     config = function()
@@ -440,7 +412,7 @@ return packer.startup(function(use)
     config = function()
       require("plugins.config.telekasten")
     end,
-    require = {
+    requires = {
       "nvim-telescope/telescope.nvim",
     },
   }
