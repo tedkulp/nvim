@@ -218,7 +218,7 @@ return packer.startup(function(use)
   }
 
   use {
-    "NvChad/nvim-colorizer.lua",
+    "Akianonymus/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
