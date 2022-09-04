@@ -1,7 +1,7 @@
 -- local mod_name = "telekasten"
 --
 -- local status_ok, telekasten = pcall(require, mod_name)
--- if not status_ok then 
+-- if not status_ok then
 --   mod_name = "Telekasten"
 --   status_ok, telekasten = pcall(require, mod_name)
 --   if not status_ok then
@@ -15,15 +15,16 @@ local mod_name = "telekasten"
 local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then return end
 
-local home = vim.fn.expand("~/zk")
+local home = vim.fn.expand("~/org")
 require("telekasten").setup({
-  home              = home,
+  home              = home .. '/' .. 'roam',
   dailies           = home .. '/' .. 'daily',
   weeklies          = home .. '/' .. 'weekly',
   templates         = home .. '/' .. 'templates',
   image_subdir      = "img",
-  extension         = ".norg",
+  extension         = ".org",
   new_note_filename = "uuid-title",
+  uuid_type         = "%Y%m%d%H%M%S",
   auto_set_filetype = false,
 })
 

@@ -412,12 +412,13 @@ return packer.startup(function(use)
   -----------------------------------------------------------------------------
 
   use {
-    "nvim-neorg/neorg",
+    "nvim-orgmode/orgmode",
     config = function()
-      require("plugins.config.neorg")
+      require("plugins.config.orgmode")
     end,
     requires = {
-      "nvim-lua/plenary.nvim",
+      "akinsho/org-bullets.nvim",
+      "lukas-reineke/headlines.nvim",
     },
   }
 
