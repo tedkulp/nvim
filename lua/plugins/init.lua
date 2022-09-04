@@ -58,9 +58,9 @@ return packer.startup(function(use)
     end
   }
 
-  -- use {
-  --   "stevearc/dressing.nvim",
-  -- }
+  use {
+    "stevearc/dressing.nvim",
+  }
 
 
 
@@ -458,6 +458,16 @@ return packer.startup(function(use)
     config = function()
       require("plugins.config.marks")
     end,
+  }
+
+  use {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("plugins.config.icon-picker")
+    end,
+    requires = {
+      "stevearc/dressing.nvim",
+    },
   }
 
   --[[ use { ]]
