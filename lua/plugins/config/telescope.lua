@@ -41,6 +41,18 @@ telescope.setup({
       },
     },
   },
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+        n = {
+          ["d"] = "delete_buffer",
+        },
+      },
+    },
+  },
   extensions = {
     fzf = {
       override_generic_sorter = false,
@@ -51,10 +63,9 @@ telescope.setup({
       files = true,
       grouped = true,
     },
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown({
-        codeactions = false,
-      })
+    live_grep_args = {
+      auto_quoting = true,
+      default_mappings = {},
     },
     project = {
       base_dirs = base_dirs,
@@ -62,6 +73,11 @@ telescope.setup({
     },
     tele_tabby = {
       use_highlighter = true,
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({
+        codeactions = false,
+      })
     },
     zoxide = {
       config = {
@@ -85,6 +101,7 @@ telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("tele_tabby")
 telescope.load_extension("zoxide")
+telescope.load_extension("live_grep_args")
 
 wk.register({
   ["<leader>P"] = {

@@ -329,6 +329,7 @@ return packer.startup(function(use)
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-project.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
       --[[ "~/src/personal/telescope-tele-tabby.nvim", ]]
       "tedkulp/telescope-tele-tabby.nvim",
       "jvgrootveld/telescope-zoxide",
