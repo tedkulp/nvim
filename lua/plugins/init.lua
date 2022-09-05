@@ -43,7 +43,7 @@ packer.init({
   ensure_dependencies = true,
 })
 
-return packer.startup(function(use)
+return packer.startup({ function(use)
 
   ----------------------------
   -- Core Stuff
@@ -481,4 +481,8 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     packer.sync()
   end
-end)
+end,
+  config = {
+    max_jobs = 10,
+  }
+})

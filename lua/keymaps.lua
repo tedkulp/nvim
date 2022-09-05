@@ -62,7 +62,13 @@ if wk_status_ok then
       name = "+Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
-      s = { "<cmd>PackerSync<cr>", "Sync" },
+      s = { function()
+        local notify_ok, notify = pcall(require, "notify")
+        if notify_ok then
+          notify("Running PackerSync...", "info")
+        end
+        vim.cmd("PackerSync")
+      end, "Sync" },
       S = { "<cmd>PackerStatus<cr>", "Status" },
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
