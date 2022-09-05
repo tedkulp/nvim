@@ -23,6 +23,9 @@ if not null_ls_status_ok then return end
 local lsp_format_status_ok, lsp_format = pcall(require, "lsp-format")
 if not lsp_format_status_ok then return end
 
+local luasnip_status_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_status_ok then return end
+
 local kind_icon = {
   Text = "",
   Method = "",
@@ -67,11 +70,32 @@ lsp.nvim_workspace({
   library = vim.api.nvim_get_runtime_file('', true),
 })
 
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 local cmp_mappings = lsp.defaults.cmp_mappings()
 
 cmp_mappings["<C-k>"] = cmp.mapping.select_prev_item()
 cmp_mappings["<C-j>"] = cmp.mapping.select_next_item()
 cmp_mappings["<C-Space>"] = cmp.mapping(cmp.mapping(cmp.mapping.complete({}), { "i", "c" }))
+cmp_mappings["<Tab>"] = cmp.mapping(function(fallback)
+  if luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
+  elseif has_words_before() then
+    cmp.complete()
+  else
+    fallback()
+  end
+end, { "i", "s" })
+cmp_mappings["<S-Tab>"] = cmp.mapping(function(fallback)
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  else
+    fallback()
+  end
+end, { "i", "s" })
 
 local cmp_sources = lsp.defaults.cmp_sources()
 
@@ -123,8 +147,5 @@ null_ls.setup({
     -- null_ls.builtins.formatting.markdownlint,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.rustfmt,
-
-
-
   },
 })
