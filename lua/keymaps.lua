@@ -79,8 +79,8 @@ if wk_status_ok then
       s = { "<cmd>split<cr>", "Split Horizontal" },
       v = { "<cmd>vsplit<cr>", "Split Vertical" },
     },
-    ["<leader>c"] = { "<cmd>bprevious <bar> bdelete #<CR>", "Close Buffer" },
-    ["<leader>C"] = { "<cmd>bprevious <bar> bdelete! #<CR>", "Close Buffer (force)" },
+    ["<leader>c"] = { "<cmd>BufDel<CR>", "Close Buffer" },
+    ["<leader>C"] = { "<cmd>BufDel!<CR>", "Close Buffer (force)" },
     ["<leader>g"] = {
       name = "+Git",
       o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
