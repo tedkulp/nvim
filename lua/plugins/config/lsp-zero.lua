@@ -105,6 +105,9 @@ table.insert(cmp_sources, 1, { name = 'orgmode' })
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
   sources = cmp_sources,
+  completion = {
+    completeopt = 'menu,menuone,noinsert,noselect',
+  },
   formatting = {
     fields = { "menu", "abbr", "kind" },
 

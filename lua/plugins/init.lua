@@ -426,11 +426,18 @@ return packer.startup({ function(use)
   use {
     "renerocksai/telekasten.nvim",
     config = function()
-      require("plugins.config.telekasten")
+      --[[ require("plugins.config.telekasten") ]]
     end,
     requires = {
       "nvim-telescope/telescope.nvim",
     },
+  }
+
+  use {
+    "mickael-menu/zk-nvim",
+    config = function()
+      require("plugins.config.zk")
+    end
   }
 
 
