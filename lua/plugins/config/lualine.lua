@@ -20,21 +20,6 @@ local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   end
 end
 
-local function searchResult()
-  if vim.v.hlsearch == 0 then
-    return ""
-  end
-  local last_search = vim.fn.getreg("/")
-  if not last_search or last_search == "" then
-    return ""
-  end
-  local searchcount = vim.fn.searchcount({ maxcount = 0 })
-  if searchcount.current < 1 then
-    return ""
-  end
-  return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
-end
-
 local function list_registered_providers_names(filetype)
   local s = require "null-ls.sources"
   local available_sources = s.get_available(filetype)
@@ -82,7 +67,7 @@ lualine.setup({
     theme = "catppuccin",
   },
   sections = {
-    lualine_y = { 'nvim_lsp', { searchResult }, 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'nvim_lsp', 'encoding', 'fileformat', 'filetype' },
     lualine_x = { { function() return status.status() end, fmt = trunc(120, 60, 60, false) },
       { function() return lsp() end } },
   },

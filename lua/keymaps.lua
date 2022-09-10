@@ -40,7 +40,7 @@ keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
 -- Non plugin which-key mappings (Telescope and Packer don't count)
 if wk_status_ok then
   wk.register({
-    ["<leader>h"] = { "<cmd>nohlsearch<cr>", "Clear Search" },
+    ["<leader>h"] = { ":<c-u>nohlsearch<cr>", "Clear Search" },
     ["<leader><leader>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>,"] = { "<cmd>Telescope buffers<CR>", "Find Buffers" },
     ["<leader>/"] = { "<cmd>Telescope live_grep_args<CR>", "File Search" },
