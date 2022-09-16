@@ -353,6 +353,7 @@ return packer.startup({ function(use)
       { "williamboman/mason-lspconfig.nvim" },
       { "lukas-reineke/lsp-format.nvim" },
       { "nvim-lua/lsp-status.nvim" },
+      { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },

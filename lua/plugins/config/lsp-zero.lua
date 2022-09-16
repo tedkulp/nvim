@@ -4,6 +4,9 @@ if not lsp_status_ok then return end
 local mason_status_ok, mason = pcall(require, "mason")
 if not mason_status_ok then return end
 
+local wk_status_ok, wk = pcall(require, "which-key")
+if not wk_status_ok then return end
+
 mason.setup({
   ui = {
     icons = {
@@ -25,6 +28,8 @@ if not lsp_format_status_ok then return end
 
 local luasnip_status_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_status_ok then return end
+
+local lines_status_ok, lines = pcall(require, "lsp_lines")
 
 local kind_icon = {
   Text = "",
@@ -135,6 +140,26 @@ lsp.on_attach(function(client, _)
 end)
 
 lsp.setup()
+
+if lines_status_ok then
+  lines.setup()
+
+  -- Default to lsp_lines being enabled -- this may change
+  vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = true,
+  })
+
+  vim.api.nvim_create_user_command('ToggleLspLines', function()
+    local flag = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config { virtual_lines = flag, virtual_text = not flag }
+    vim.notify.notify("LSP lines has been " .. (flag and "enabled" or "disabled"), "info", {})
+  end, {
+    desc = "Switch between diagnostic messages at end of line or directly below code",
+  })
+
+  wk.register({ ["<leader>lt"] = { "<cmd>ToggleLspLines<cr>", "Toggle LSP Lines" } })
+end
 
 null_ls.setup({
   sources = {
