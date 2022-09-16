@@ -1,9 +1,18 @@
 vim.opt.conceallevel = 1
 
--- Add the key mappings only for Markdown files in a zk notebook.
-if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
-  local wk_status_ok, wk = pcall(require, "which-key")
-  if wk_status_ok then
+local wk_status_ok, wk = pcall(require, "which-key")
+if wk_status_ok then
+  wk.register({
+    ["<leader>b"] = {
+      m = {
+        "<cmd>MarkdownPreviewToggle<cr>",
+        "Markdown Preview",
+      },
+    },
+  }, { mode = "n", buffer = 0 })
+
+  -- Add the key mappings only for Markdown files in a zk notebook.
+  if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
     wk.register({
       ["Z"] = {
         ["n"] = { "<cmd>ZkNew { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", "New Note",

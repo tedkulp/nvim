@@ -407,11 +407,8 @@ return packer.startup({ function(use)
 
   use {
     "iamcco/markdown-preview.nvim",
-    -- ft = "markdown",
-    -- cmd = { "MarkdownPreview" },
-    config = function()
-      require("plugins.config.markdown")
-    end,
+    ft = "markdown",
+    cmd = { "MarkdownPreview" },
   }
 
 
