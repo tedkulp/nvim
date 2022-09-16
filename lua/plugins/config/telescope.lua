@@ -98,14 +98,18 @@ telescope.setup({
 
 telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
-telescope.load_extension("project")
 telescope.load_extension("tele_tabby")
-telescope.load_extension("zoxide")
 telescope.load_extension("live_grep_args")
 
 wk.register({
   ["<leader>P"] = {
-    "<cmd>Telescope project display_type=full<cr>",
+    function()
+      if not packer_plugins["telescope-project.nvim"].loaded then
+        require("packer").loader("telescope-project.nvim")
+        telescope.load_extension("project")
+      end
+      vim.cmd("Telescope project display_type=full")
+    end,
     "Project List",
   },
   ["<leader>T"] = {
@@ -120,11 +124,14 @@ wk.register({
       }
       require('telescope').extensions.tele_tabby.list(opts)
     end,
-    --[[ "<cmd>Telescope tele_tabby list<cr>", ]]
     "Tab List",
   },
   ["<leader>z"] = {
     function()
+      if not packer_plugins["telescope-zoxide"].loaded then
+        require("packer").loader("telescope-zoxide")
+        telescope.load_extension("zoxide")
+      end
       require('telescope').extensions.zoxide.list()
     end,
     "Find Directory w/ 'z'",

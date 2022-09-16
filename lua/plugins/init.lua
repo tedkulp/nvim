@@ -328,11 +328,10 @@ return packer.startup({ function(use)
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
-      "nvim-telescope/telescope-project.nvim",
+      { "nvim-telescope/telescope-project.nvim", opt = true, },
       "nvim-telescope/telescope-live-grep-args.nvim",
-      --[[ "~/src/personal/telescope-tele-tabby.nvim", ]]
       "tedkulp/telescope-tele-tabby.nvim",
-      "jvgrootveld/telescope-zoxide",
+      { "jvgrootveld/telescope-zoxide", opt = true, },
     },
     config = function()
       require("plugins.config.telescope")
