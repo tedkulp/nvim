@@ -309,6 +309,7 @@ return packer.startup({ function(use)
 
   use {
     'pwntester/octo.nvim',
+    cmd = "Octo",
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
