@@ -78,6 +78,7 @@ if wk_status_ok then
       f = { "<cmd>Telescope buffers<cr>", "Find" },
       s = { "<cmd>split<cr>", "Split Horizontal" },
       v = { "<cmd>vsplit<cr>", "Split Vertical" },
+      z = { "<cmd>WindowsMaximize<cr>", "Toggle Max Window" },
     },
     ["<leader>c"] = { "<cmd>BufDel<CR>", "Close Buffer" },
     ["<leader>C"] = { "<cmd>BufDel!<CR>", "Close Buffer (force)" },
