@@ -172,6 +172,10 @@ return packer.startup({ function(use)
   }
 
   use {
+    "mg979/vim-visual-multi"
+  }
+
+  use {
     "anuvyklack/windows.nvim",
     requires = {
       "anuvyklack/middleclass",
