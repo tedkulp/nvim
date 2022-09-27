@@ -125,6 +125,7 @@ lsp.setup_nvim_cmp({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         path = "[Path]",
+        emoji = "[Emoji]",
       })[entry.source.name]
 
       return item
