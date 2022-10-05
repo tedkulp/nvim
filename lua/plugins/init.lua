@@ -289,14 +289,14 @@ return packer.startup({ function(use)
 
   use {
     'pwntester/octo.nvim',
-    cmd = "Octo",
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
+      'almo7aya/openingh.nvim',
     },
     config = function()
-      require "octo".setup()
+      require("plugins.config.github")
     end
   }
 
