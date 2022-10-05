@@ -175,30 +175,6 @@ return packer.startup({ function(use)
     "mg979/vim-visual-multi"
   }
 
-  use {
-    "anuvyklack/windows.nvim",
-    requires = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim",
-    },
-    config = function()
-      vim.o.winminwidth = 10
-      vim.o.equalalways = false
-      require("windows").setup({
-        autowidth = {
-          winwidth = 80,
-        },
-        ignore = {
-          buftype = { "quickfix", "terminal" },
-          filetype = { "NvimTree", "neo-tree", "undotree", "gundo", "toggleterm" }
-        },
-        animation = {
-          enabled = true,
-        },
-      })
-    end
-  }
-
 
 
   ----------------------------
