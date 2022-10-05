@@ -145,10 +145,10 @@ lsp.setup()
 if lines_status_ok then
   lines.setup()
 
-  -- Default to lsp_lines being enabled -- this may change
+  -- Default to messages at the end of lines
   vim.diagnostic.config({
-    virtual_text = false,
-    virtual_lines = true,
+    virtual_text = true,
+    virtual_lines = false,
   })
 
   vim.api.nvim_create_user_command('ToggleLspLines', function()
