@@ -416,6 +416,14 @@ return packer.startup({ function(use)
     cmd = { "MarkdownPreview" },
   }
 
+  use {
+    "gaoDean/autolist.nvim",
+    ft = "markdown",
+    config = function()
+      require("autolist").setup({})
+    end,
+  }
+
 
 
   -----------------------------------------------------------------------------
