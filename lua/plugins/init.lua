@@ -95,6 +95,7 @@ return packer.startup({ function(use)
           },
         }
       });
+      require "colorscheme"
     end
   }
 
