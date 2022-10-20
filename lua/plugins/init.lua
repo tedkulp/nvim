@@ -173,7 +173,18 @@ return packer.startup({ function(use)
   }
 
   use {
-    "mg979/vim-visual-multi"
+    "mg979/vim-visual-multi",
+    config = function()
+      vim.cmd [[
+        let g:VM_maps = {}
+        let g:VM_maps["Select Cursor Down"] = '<M-C-Down>'
+        let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'
+        let g:VM_maps["Erase Regions"]      = '\\gr'
+        let g:VM_maps["Mouse Cursor"]       = '<C-LeftMouse>'
+        let g:VM_maps["Mouse Word"]         = '<C-RightMouse>'
+        let g:VM_maps["Mouse Column"]       = '<M-C-RightMouse>'
+      ]]
+    end,
   }
 
 
