@@ -37,6 +37,14 @@ keymap("n", "<A-x>", "<cmd>Telescope commands<cr>", opts)
 -- Toggle the quickfix window
 keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
 
+-- Search results in the middle of the screen
+keymap("n", "n", "<cmd>nzz<cr>", { silent = true, noremap = true })
+keymap("n", "N", "<cmd>Nzz<cr>", { silent = true, noremap = true })
+keymap("n", "*", "<cmd>*zz<cr>", { silent = true, noremap = true })
+keymap("n", "#", "<cmd>#zz<cr>", { silent = true, noremap = true })
+keymap("n", "g*", "<cmd>g*zz<cr>", { silent = true, noremap = true })
+keymap("n", "g#", "<cmd>g#zz<cr>", { silent = true, noremap = true })
+
 -- Non plugin which-key mappings (Telescope and Packer don't count)
 if wk_status_ok then
   wk.register({
