@@ -1,0 +1,43 @@
+## vim-expand-region
+Expand selected region                                  | +
+Shrink selected region                                  | _
+
+## vim-visual-multi
+Add word under cursor, keep pressing to find next       | <C-n>
+Start adding cursors downwards, skiping emtpy lines     | <C-Down>
+Start adding cursors upwards, skiping emtpy lines       | <C-Up>
+Start selecting right                                   | <S-Right>
+Start selecting left                                    | <S-Up>
+Select all occurances of current word in the file       | \\A
+Start regex search                                      | \\/
+Add cursor at position                                  | \\\
+Switch between cursor and extend mode                   | <Tab>
+Find next (while in VM mode)                            | ]
+Find prev (while in VM mode)                            | [
+Goto next (while in VM mode)                            | }
+Goto prev (while in VM mode)                            | {
+Fast Goto next (while in VM mode)                       | <C-f>
+Fast Goto prev (while in VM mode)                       | <C-b>
+Skip and go to next (while in VM mode)                  | q
+Remove region under cursor (while in VM mode)           | Q
+Replace pattern in regions (while in VM mode)           | R
+Surround (while in VM mode)                             | S
+Increase Number (while in VM mode)                      | <C-a>
+Decrease Number (while in VM mode)                      | <C-x>
+Move text left (while in VM mode)                       | <M-S-Left>
+Move text right (while in VM mode)                      | <M-S-Right>
+Align cursors (while in VM mode)                        | \\a
+Transpose (while in VM mode)                            | \\t
+Split regions w/ pattern (while in VM mode)             | \\s
+Filter regions w/ pattern (while in VM mode)            | \\f
+Transform regions w/ expression (while in VM mode)      | \\e
+Rewrite lat pattern (while in VM mode)                  | \\r
+Merge regions (while in VM mode)                        | \\m
+Duplicate regions (while in VM mode)                    | \\d
+Show VM registers (while in VM mode)                    | \\"
+Show tools menu (while in VM mode)                      | \\`
+Case conversion menu (while in VM mode)                 | \\C
+Search menu (while in VM mode)                          | \\S
+Toggle multiline (while in VM mode)                     | \\M
+Toggle VM mappings (while in VM mode)                   | \\<Space>
+Toggle only mode (while in VM mode)                     | \\<Enter>
