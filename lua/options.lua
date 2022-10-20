@@ -11,6 +11,7 @@ local options = {
   mouse = "niv",
   number = true,
   numberwidth = 4,
+  scrolloff = 5,
   shiftwidth = 2,
   showtabline = 2,
   signcolumn = "yes",
