@@ -531,6 +531,14 @@ return packer.startup({ function(use)
     end,
   }
 
+  use({
+    'mrjones2014/dash.nvim',
+    run = 'gmake install || make install',
+    config = function()
+      require("plugins.config.dash")
+    end,
+  })
+
   --[[ use { ]]
   --[[   "github/copilot.vim", ]]
   --[[   config = function() ]]
