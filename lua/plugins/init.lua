@@ -249,6 +249,14 @@ return packer.startup({ function(use)
   }
 
   use {
+    "ThePrimeagen/harpoon",
+    event = "BufRead",
+    config = function()
+      require("plugins.config.harpoon")
+    end,
+  }
+
+  use {
     "Akianonymus/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({})
