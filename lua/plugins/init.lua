@@ -359,7 +359,7 @@ return packer.startup({ function(use)
       "nvim-telescope/telescope-ui-select.nvim",
       { "nvim-telescope/telescope-project.nvim", opt = true, },
       "nvim-telescope/telescope-live-grep-args.nvim",
-      "tedkulp/telescope-tele-tabby.nvim",
+      "LukasPietzschmann/telescope-tabs",
       { "jvgrootveld/telescope-zoxide", opt = true, },
     },
     config = function()

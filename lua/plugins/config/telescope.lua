@@ -74,6 +74,14 @@ telescope.setup({
     tele_tabby = {
       use_highlighter = true,
     },
+    ["telescope-tabs"] = {
+      show_preview = false,
+      entry_formatter = function(tab_id, buffer_ids, _, _)
+        local cwd = vim.fn.getcwd(-1, tab_id)
+        local cwdDirName = cwd:match("%w+$")
+        return string.format('%d: %s - %s window(s)', tab_id, cwdDirName, #buffer_ids)
+      end,
+    },
     ["ui-select"] = {
       require("telescope.themes").get_dropdown({
         codeactions = false,
@@ -98,7 +106,8 @@ telescope.setup({
 
 telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
-telescope.load_extension("tele_tabby")
+-- telescope.load_extension("tele_tabby")
+telescope.load_extension("telescope-tabs")
 telescope.load_extension("live_grep_args")
 
 wk.register({
@@ -114,15 +123,7 @@ wk.register({
   },
   ["<leader>T"] = {
     function()
-      local opts = require("telescope.themes").get_dropdown {
-        winblend = 10,
-        border = true,
-        previewer = false,
-        shorten_path = false,
-        heigth = 20,
-        width = 120
-      }
-      require('telescope').extensions.tele_tabby.list(opts)
+      require('telescope').extensions['telescope-tabs'].list_tabs()
     end,
     "Tab List",
   },
