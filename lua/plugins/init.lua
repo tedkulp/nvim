@@ -273,10 +273,12 @@ return packer.startup({ function(use)
 
   use {
     "terryma/vim-expand-region",
+    event = "BufRead",
   }
 
   use {
     "fedepujol/move.nvim",
+    event = "BufRead",
     config = function()
       local opts = { noremap = true, silent = true }
       -- Normal-mode commands
