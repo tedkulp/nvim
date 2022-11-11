@@ -23,6 +23,9 @@ if not cmp_status_ok then return end
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then return end
 
+local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mason_null_ls_status_ok then return end
+
 local lsp_format_status_ok, lsp_format = pcall(require, "lsp-format")
 if not lsp_format_status_ok then return end
 
@@ -71,6 +74,16 @@ lsp.set_preferences({
   }
 })
 
+lsp.use('yamlls', {
+  settings = {
+    yaml = {
+      schemas = {
+        kubernetes = "*.yaml",
+      },
+    },
+  },
+})
+
 lsp.nvim_workspace({
   library = vim.api.nvim_get_runtime_file('', true),
 })
@@ -104,8 +117,25 @@ end, { "i", "s" })
 
 local cmp_sources = lsp.defaults.cmp_sources()
 
+table.insert(cmp_sources, 1, { name = 'spell' })
 table.insert(cmp_sources, 1, { name = 'emoji' })
 table.insert(cmp_sources, 1, { name = 'orgmode' })
+--
+lsp.configure("ltex", {
+  on_attach = function(client, _)
+    -- your other on_attach functions.
+    require("ltex_extra").setup {
+      load_langs = { "en-US", "es-GB" }, -- table <string> : languages for witch dictionaries will be loaded
+      init_check = true, -- boolean : whether to load dictionaries on startup
+      path = vim.fn.stdpath("config") .. "/spell/", -- string : path to store dictionaries. Relative path uses current working directory
+      log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+    }
+  end,
+  settings = {
+    ltex = {
+    },
+  },
+})
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
@@ -120,12 +150,13 @@ lsp.setup_nvim_cmp({
       -- item.kind = kind_icon[item.kind]
       item.kind = string.format("%s %s", kind_icon[item.kind], item.kind)
       item.menu = ({
-        buffer = "[Buffer]",
         luasnip = "[Snippet]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         path = "[Path]",
+        buffer = "[Buffer]",
         emoji = "[Emoji]",
+        spell = "[Spell]",
       })[entry.source.name]
 
       return item
@@ -166,15 +197,22 @@ null_ls.setup({
   sources = {
     null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.code_actions.gitsigns,
+    -- null_ls.builtins.diagnostics.codespell,
     null_ls.builtins.diagnostics.eslint_d,
     -- null_ls.builtins.diagnostics.jsonlint,
     -- null_ls.builtins.diagnostics.luacheck,
     -- null_ls.builtins.diagnostics.markdownlint,
     -- null_ls.builtins.diagnostics.tsc,
+    -- null_ls.builtins.formatting.codespell,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.gofmt,
     -- null_ls.builtins.formatting.markdownlint,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.rustfmt,
   },
+})
+
+mason_null_ls.setup({
+  --[[ automatic_install = true, ]]
+  --[[ automatic_setup = true, ]]
 })

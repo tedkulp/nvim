@@ -392,6 +392,8 @@ return packer.startup({ function(use)
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-emoji" },
+      { "f3fora/cmp-spell" },
+      { "barreiroleo/ltex-extra.nvim" },
       --[[ { "hrsh7th/cmp-copilot", }, ]]
 
       -- Snippets
@@ -400,6 +402,7 @@ return packer.startup({ function(use)
 
       -- Other mason stuff
       { "jose-elias-alvarez/null-ls.nvim" },
+      { "jayp0521/mason-null-ls.nvim" },
     },
     config = function()
       require("plugins.config.lsp-zero")
