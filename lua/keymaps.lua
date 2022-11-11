@@ -38,12 +38,14 @@ keymap("n", "<A-x>", "<cmd>Telescope commands<cr>", opts)
 keymap("n", "<c-q>", ":call QuickFixToggle()<cr>", opts)
 
 -- Search results in the middle of the screen
-keymap("n", "n", "<cmd>nzz<cr>", { silent = true, noremap = true })
-keymap("n", "N", "<cmd>Nzz<cr>", { silent = true, noremap = true })
-keymap("n", "*", "<cmd>*zz<cr>", { silent = true, noremap = true })
-keymap("n", "#", "<cmd>#zz<cr>", { silent = true, noremap = true })
-keymap("n", "g*", "<cmd>g*zz<cr>", { silent = true, noremap = true })
-keymap("n", "g#", "<cmd>g#zz<cr>", { silent = true, noremap = true })
+vim.cmd([[
+  :nnoremap n nzz
+  :nnoremap N Nzz
+  :nnoremap * *zz
+  :nnoremap # #zz
+  :nnoremap g* g*zz
+  :nnoremap g# g#zz
+]])
 
 -- Non plugin which-key mappings (Telescope and Packer don't count)
 if wk_status_ok then
@@ -64,6 +66,7 @@ if wk_status_ok then
       j = { vim.diagnostic.goto_next, "Next Diagnostic", },
       k = { vim.diagnostic.goto_prev, "Prev Diagnostic", },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
+      R = { "<cmd>LspRestart<cr>", "Restart LSP" },
       w = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" },
     },
     ["<leader>p"] = {
@@ -82,9 +85,13 @@ if wk_status_ok then
     },
     ["<leader>b"] = {
       name = "+Buffer",
+      b = { "<cmd>Telescope buffers<cr>", "Find" },
       c = { "<cmd>close<cr>", "Close split" },
       f = { "<cmd>Telescope buffers<cr>", "Find" },
-      s = { "<cmd>split<cr>", "Split Horizontal" },
+      h = { "<cmd>split<cr>", "Split Horizontal" },
+      r = { "<cmd>e<cr>", "Reload file" },
+      R = { "<cmd>e!<cr>", "Reload file (force)" },
+      s = { "<cmd>w<cr>", "Save Buffer" },
       v = { "<cmd>vsplit<cr>", "Split Vertical" },
       z = { "<cmd>WindowsMaximize<cr>", "Toggle Max Window" },
     },
@@ -134,6 +141,7 @@ if wk_status_ok then
     ["gr"] = { "Replace without yank" },
   }, { mode = "v" })
 end
+
 
 
 ----------------------------
