@@ -13,5 +13,5 @@ telescope.load_extension("harpoon")
 
 wk.register({
   ["<leader>bm"] = { "<cmd>Telescope harpoon marks<cr>", "Switch Harpoon Marks" },
-  ["<leader>bM"] = { "<cmd>lua require('harpoon').add_file()<cr>", "Add Harpoon Mark" },
+  ["<leader>bM"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add Harpoon Mark" },
 })
