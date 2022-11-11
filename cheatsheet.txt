@@ -4,11 +4,11 @@ Shrink selected region                                  | _
 
 ## vim-visual-multi
 Add word under cursor, keep pressing to find next       | <C-n>
-Start adding cursors downwards, skiping emtpy lines     | <C-Down>
-Start adding cursors upwards, skiping emtpy lines       | <C-Up>
+Start adding cursors downwards, skipping empty lines    | <C-Down>
+Start adding cursors upwards, skipping empty lines      | <C-Up>
 Start selecting right                                   | <S-Right>
 Start selecting left                                    | <S-Up>
-Select all occurances of current word in the file       | \\A
+Select all occurrences of current word in the file      | \\A
 Start regex search                                      | \\/
 Add cursor at position                                  | \\\
 Switch between cursor and extend mode                   | <Tab>
