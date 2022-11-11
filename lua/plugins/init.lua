@@ -240,17 +240,18 @@ return packer.startup({ function(use)
   }
 
   use {
-    "phaazon/hop.nvim",
-    event = "BufRead",
-    branch = "v2",
+    "ggandor/leap.nvim",
     config = function()
-      require("plugins.config.hop")
+      require("plugins.config.leap")
     end,
+    requires = {
+      "Weissle/easy-action",
+      "kevinhwang91/promise-async",
+    },
   }
 
   use {
     "ThePrimeagen/harpoon",
-    event = "BufRead",
     config = function()
       require("plugins.config.harpoon")
     end,
