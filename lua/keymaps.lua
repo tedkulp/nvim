@@ -26,10 +26,6 @@ keymap("n", "<C-l>", "<cmd>wincmd l<cr>", opts)
 keymap("n", "<S-l>", ":bnext<cr>", opts)
 keymap("n", "<S-h>", ":bprev<cr>", opts)
 
--- Move text up and down
-keymap("n", "<A-j>", ":m +1<CR>==", opts)
-keymap("n", "<A-k>", ":m -2<CR>==", opts)
-
 -- Blatently stolen from emacs
 keymap("n", "<A-x>", "<cmd>Telescope commands<cr>", opts)
 
@@ -131,10 +127,6 @@ if wk_status_ok then
 end
 
 -- VISUAL
-
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 
 if wk_status_ok then
   wk.register({
