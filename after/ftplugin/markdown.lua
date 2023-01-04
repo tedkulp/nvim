@@ -1,4 +1,4 @@
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 0
 
 Zk_status_ok, Zk_util = pcall(require, "zk.util")
 if not Zk_status_ok then return end

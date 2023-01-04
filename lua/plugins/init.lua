@@ -250,11 +250,12 @@ return packer.startup({ function(use)
     },
   }
 
+  -- https://github.com/cbochs/grapple.nvim
   use {
-    "ThePrimeagen/harpoon",
+    "cbochs/grapple.nvim",
     config = function()
-      require("plugins.config.harpoon")
-    end,
+      require("plugins.config.grapple")
+    end
   }
 
   use {
@@ -356,6 +357,7 @@ return packer.startup({ function(use)
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-context",
       "p00f/nvim-ts-rainbow",
+      "nvim-treesitter/playground",
     },
     run = ":TSUpdate",
     config = function()
@@ -452,6 +454,21 @@ return packer.startup({ function(use)
     end
   }
 
+  use {
+    "mfussenegger/nvim-dap",
+    --[[ module = { "dap" }, ]]
+    --[[ wants = { ]]
+    --[[   "nvim-dap-virtual-text", ]]
+    --[[   "nvim-dap-ui", ]]
+    --[[ }, ]]
+    requires = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-telescope/telescope-dap.nvim",
+      "suketa/nvim-dap-ruby",
+    }
+  }
+
 
 
   -----------------------------------------------------------------------------
@@ -520,6 +537,10 @@ return packer.startup({ function(use)
     }
   }
 
+  use {
+    "romgrk/todoist.nvim",
+  }
+
 
 
   ----------------------------
@@ -556,6 +577,7 @@ return packer.startup({ function(use)
     end,
   }
 
+  -- TODO: Remove me?
   use {
     'chentoast/marks.nvim',
     config = function()

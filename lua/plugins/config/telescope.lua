@@ -109,6 +109,7 @@ telescope.load_extension("fzf")
 -- telescope.load_extension("tele_tabby")
 telescope.load_extension("telescope-tabs")
 telescope.load_extension("live_grep_args")
+-- telescope.load_extension("dap")
 
 wk.register({
   ["<leader>P"] = {

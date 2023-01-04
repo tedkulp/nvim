@@ -60,12 +60,17 @@ configs.setup({
     },
     select = {
       enable = true,
+      lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = { query = "@function.outer", desc = "Select function outer" },
         ["if"] = { query = "@function.inner", desc = "Select function inner" },
-        ["ac"] = { query = "@class.outer", desc = "Select class outer" },
-        ["ic"] = { query = "@class.inner", desc = "Select class inner" },
+        ["aC"] = { query = "@class.outer", desc = "Select class outer" },
+        ["iC"] = { query = "@class.inner", desc = "Select class inner" },
+        ["aq"] = { query = "@block.outer", desc = "Select block outer (to)" },
+        ["iq"] = { query = "@block.inner", desc = "Select block inner (to)" },
+        ["ac"] = { query = "@call.outer", desc = "Select call outer (to)" },
+        ["ic"] = { query = "@call.inner", desc = "Select call inner (to)" },
       },
     },
     swap = {
