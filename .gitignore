@@ -1,1 +1,4 @@
 plugin/packer_compiled.lua
+**/cache/**
+spell/*
+.luarc.json

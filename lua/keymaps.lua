@@ -43,7 +43,7 @@ vim.cmd([[
   :nnoremap g# g#zz
 ]])
 
--- Non plugin which-key mappings (Telescope and Packer don't count)
+-- Non plugin which-key mappings (Telescope doesn't count)
 if wk_status_ok then
   wk.register({
     ["<leader>h"] = { ":<c-u>nohlsearch<cr>", "Clear Search" },
@@ -65,20 +65,7 @@ if wk_status_ok then
       R = { "<cmd>LspRestart<cr>", "Restart LSP" },
       w = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" },
     },
-    ["<leader>p"] = {
-      name = "+Packer",
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      s = { function()
-        local notify_ok, notify = pcall(require, "notify")
-        if notify_ok then
-          notify("Running PackerSync...", "info")
-        end
-        vim.cmd("PackerSync")
-      end, "Sync" },
-      S = { "<cmd>PackerStatus<cr>", "Status" },
-      u = { "<cmd>PackerUpdate<cr>", "Update" },
-    },
+    ["<leader>L"] = { "<cmd>Lazy<cr>", "Lazy (Plugin Manager)" },
     ["<leader>b"] = {
       name = "+Buffer",
       b = { "<cmd>Telescope buffers<cr>", "Find" },

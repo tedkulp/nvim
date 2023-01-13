@@ -3,3 +3,6 @@ plugin
 Dockerfile
 .dockerignore
 .gitignore
+**/cache/**
+spell/*
+.luarc.json

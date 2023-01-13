@@ -9,7 +9,7 @@ local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then return end
 
 -- Pull these into a separte config file
-local dirs_to_include = { "~/src", "~/src/tmp", "~/src/omuras/code", "~/org" }
+local dirs_to_include = { "~/src", "~/src/tmp", "~/src/omuras/code" }
 local base_dirs = {}
 
 -- Add our config location to the project list
@@ -113,13 +113,7 @@ telescope.load_extension("live_grep_args")
 
 wk.register({
   ["<leader>P"] = {
-    function()
-      if not packer_plugins["telescope-project.nvim"].loaded then
-        require("packer").loader("telescope-project.nvim")
-        telescope.load_extension("project")
-      end
-      vim.cmd("Telescope project display_type=full")
-    end,
+    "<cmd>Telescope project display_type=full<cr>",
     "Project List",
   },
   ["<leader>T"] = {
@@ -129,13 +123,7 @@ wk.register({
     "Tab List",
   },
   ["<leader>z"] = {
-    function()
-      if not packer_plugins["telescope-zoxide"].loaded then
-        require("packer").loader("telescope-zoxide")
-        telescope.load_extension("zoxide")
-      end
-      require('telescope').extensions.zoxide.list()
-    end,
+    "<cmd>Telescope zoxide list<cr>",
     "Find Directory w/ 'z'",
   },
 })

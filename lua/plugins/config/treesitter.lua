@@ -6,9 +6,11 @@ if context_ok then
   context.setup()
 end
 
-local orgmode_ok, orgmode = pcall(require, "orgmode")
-if orgmode_ok then
-  orgmode.setup_ts_grammar()
+local various_ok, various = pcall(require, "various-textobjs")
+if various_ok then
+  various.setup({
+    useDefaultKeymaps = true
+  })
 end
 
 local wk_status_ok, wk = pcall(require, "which-key")
@@ -24,7 +26,6 @@ local languages = {
   "lua",
   "markdown",
   "markdown_inline",
-  "org",
   "python",
   "regex",
   "ruby",
@@ -78,10 +79,6 @@ configs.setup({
     },
   },
 })
-
-if orgmode_ok then
-  orgmode.setup()
-end
 
 wk.register({
   ["g"] = {

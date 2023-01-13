@@ -1,81 +1,82 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
-  vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then return end
-
-vim.api.nvim_create_augroup("_packer_user_config", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-  group = "_packer_user_config",
-  pattern = { "*/plugins/config/**.lua", "*/keymaps.lua", "*/autocommands.lua" },
-  callback = function()
-    vim.cmd("source <afile>")
-    vim.cmd("PackerCompile")
-  end
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-  group = "_packer_user_config",
-  pattern = { "*/plugins/init.lua" },
-  callback = function()
-    vim.cmd("source <afile>")
-  end
-})
-
-packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
-    prompt_border = "single",
-  },
-  --[[ max_jobs = 50, ]]
-  git = {
-    clone_timeout = 600,
-  },
-  auto_clean = true,
-  ensure_dependencies = true,
-})
-
-return packer.startup({ function(use)
+require("lazy").setup({
 
   ----------------------------
   -- Core Stuff
   ----------------------------
 
-  use {
-    "wbthomason/packer.nvim",
-  }
-
-  use {
+  {
     "nvim-lua/plenary.nvim",
-  }
+    priority = 900,
+  },
 
-  use {
+  {
+    "stevearc/dressing.nvim",
+    priority = 900,
+  },
+
+  {
     "rcarriga/nvim-notify",
+    priority = 800,
     config = function()
       vim.notify = require("notify")
-    end
-  }
+    end,
+  },
 
-  use {
-    "stevearc/dressing.nvim",
-  }
-
-
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    dependencies = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      "LukasPietzschmann/telescope-tabs",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+      {
+        "nvim-telescope/telescope-project.nvim",
+        cmd = "Telescope project",
+        config = function()
+          require('telescope').load_extension("project")
+        end,
+      },
+      {
+        "jvgrootveld/telescope-zoxide",
+        cmd = "Telescope zoxide",
+        config = function()
+          require('telescope').load_extension("zoxide")
+        end,
+      },
+    },
+    config = function()
+      require("plugins.config.telescope")
+    end,
+  },
 
   ----------------------------
   -- Color schemes
   ----------------------------
-  use {
+
+  {
     "catppuccin/nvim",
-    as = "catppuccin",
+    priority = 1000,
+    name = "catppuccin",
     config = function()
       require("catppuccin").setup({
         dim_inactive = {
@@ -97,26 +98,37 @@ return packer.startup({ function(use)
       });
       require "colorscheme"
     end
-  }
-
-
+  },
 
   ----------------------------
   -- Navigation
   ----------------------------
 
-  use {
+  {
     "folke/which-key.nvim", -- Do this at the top so we can use it for plugin bindings
+    priority = 800,
     enter = "VimEnter",
     config = function()
       require("plugins.config.which-key").setup()
     end,
-  }
+  },
 
-  use {
+  {
+    "akinsho/bufferline.nvim",
+    -- tag = "v2.*",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+      "tiagovla/scope.nvim",
+    },
+    config = function()
+      require("plugins.config.bufferline")
+    end,
+  },
+
+  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
@@ -127,52 +139,40 @@ return packer.startup({ function(use)
     config = function()
       require("plugins.config.neo-tree")
     end,
-  }
+  },
 
-  use {
+  {
     "vladdoster/remember.nvim",
     config = function()
       require("remember").setup {
         open_folds = true,
       }
     end,
-  }
+  },
 
-  use {
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
-    requires = {
-      "kyazdani42/nvim-web-devicons",
-      "tiagovla/scope.nvim",
-    },
-    config = function()
-      require("plugins.config.bufferline")
-    end,
-  }
-
-  use {
+  {
     'b0o/incline.nvim',
     config = function()
       require('incline').setup()
     end,
-  }
+  },
 
-  -- Better quick list
-  use {
+  {
+    -- Better quick list
     "kevinhwang91/nvim-bqf",
     ft = "qf",
-  }
+  },
 
-  use {
+  {
     "ojroques/nvim-bufdel",
     config = function()
       require("bufdel").setup({
         quit = false,
       })
     end,
-  }
+  },
 
-  use {
+  {
     "mg979/vim-visual-multi",
     config = function()
       vim.cmd [[
@@ -185,100 +185,99 @@ return packer.startup({ function(use)
         let g:VM_maps["Mouse Column"]       = '<M-C-RightMouse>'
       ]]
     end,
-  }
-
-
+  },
 
   ----------------------------
   -- Look and Feel and Editing
   ----------------------------
 
-  use {
+  {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+    },
     config = function()
       require("plugins.config.lualine")
     end,
-  }
+  },
 
-  use {
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     config = function()
       require("plugins.config.indent-blankline")
     end,
-  }
+  },
 
-  use {
+  {
     "kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup({})
     end
-  }
+  },
 
-  use {
+  {
     "tpope/vim-repeat",
-  }
+  },
 
-  use {
+  {
     "tpope/vim-abolish",
     config = function()
       require("plugins.config.abolish")
     end,
-  }
+  },
 
-  use {
+  {
     "editorconfig/editorconfig-vim",
-  }
+  },
 
-  use {
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("plugins.config.comment")
     end,
     event = "BufEnter",
-  }
+  },
 
-  use {
+  {
     "ggandor/leap.nvim",
     config = function()
       require("plugins.config.leap")
     end,
-    requires = {
+    dependencies = {
       "Weissle/easy-action",
       "kevinhwang91/promise-async",
     },
-  }
+  },
 
-  -- https://github.com/cbochs/grapple.nvim
-  use {
+  {
+    -- https://github.com/cbochs/grapple.nvim
     "cbochs/grapple.nvim",
     config = function()
       require("plugins.config.grapple")
     end
-  }
+  },
 
-  use {
+  {
     "Akianonymus/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({})
     end,
-  }
+  },
 
-  use {
+  {
     "mizlan/iswap.nvim",
     config = function()
       require("plugins.config.iswap")
     end
-  }
+  },
 
-  use {
+  {
     "terryma/vim-expand-region",
-    event = "BufRead",
-  }
+  },
 
-  use {
-    "fedepujol/move.nvim",
+  {
+    "ur4ltz/move.nvim",
     event = "BufRead",
     config = function()
       local opts = { noremap = true, silent = true }
@@ -294,63 +293,78 @@ return packer.startup({ function(use)
       vim.keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
       vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
     end,
-  }
+  },
 
-
+  {
+    "shortcuts/no-neck-pain.nvim",
+    config = function()
+      require('no-neck-pain').setup({
+        enableOnVimEnter = false,
+        toggleMapping = "<Leader>bn",
+        width = 132,
+      })
+      require('which-key').register({
+        ['<leader>bn'] = {
+          "<cmd>NoNeckPain<cr>",
+          "Auto-center Buffers",
+        },
+      })
+    end
+  },
 
   -----------------------------------------------------------------------------
   -- Git
   -----------------------------------------------------------------------------
 
-  use {
+  {
     "lewis6991/gitsigns.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.config.gitsigns")
     end,
     event = "BufReadPre",
-  }
+  },
 
-  use {
+  {
     "sindrets/diffview.nvim",
-    config = function() require("plugins.config.diffview") end,
-    requires = "nvim-lua/plenary.nvim",
     cmd = "DiffviewOpen",
-  }
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 
-  use {
+  {
     "TimUntersberger/neogit",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
     },
     config = function()
       require("plugins.config.neogit")
     end,
-  }
+  },
 
-  use {
+  {
     'pwntester/octo.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
       'almo7aya/openingh.nvim',
     },
+    cmd = "Octo",
     config = function()
       require("plugins.config.github")
     end
-  }
-
-
+  },
 
   ----------------------------
   -- Treesitter
   ----------------------------
 
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
-    requires = {
+    dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-textsubjects",
@@ -358,54 +372,29 @@ return packer.startup({ function(use)
       "nvim-treesitter/nvim-treesitter-context",
       "p00f/nvim-ts-rainbow",
       "nvim-treesitter/playground",
+      "chrisgrieser/nvim-various-textobjs",
     },
     run = ":TSUpdate",
     config = function()
       require("plugins.config.treesitter")
     end,
-    -- event = "BufReadPre",
-  }
-
-
-
-  ----------------------------
-  -- Telescope
-  ----------------------------
-
-  use {
-    "nvim-telescope/telescope.nvim",
-    requires = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-      "nvim-telescope/telescope-file-browser.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
-      { "nvim-telescope/telescope-project.nvim", opt = true, },
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      "LukasPietzschmann/telescope-tabs",
-      { "jvgrootveld/telescope-zoxide", opt = true, },
-    },
-    config = function()
-      require("plugins.config.telescope")
-    end,
-  }
-
-
+  },
 
   ----------------------------
   -- LSP & Friends
   ----------------------------
 
-  use {
+  {
     'VonHeikemen/lsp-zero.nvim',
-    requires = {
+    event = "BufRead",
+    dependencies = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "lukas-reineke/lsp-format.nvim" },
       { "nvim-lua/lsp-status.nvim" },
-      { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+      { url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim", name = "lsp_lines", },
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },
@@ -417,7 +406,6 @@ return packer.startup({ function(use)
       { "hrsh7th/cmp-emoji" },
       { "f3fora/cmp-spell" },
       { "barreiroleo/ltex-extra.nvim" },
-      --[[ { "hrsh7th/cmp-copilot", }, ]]
 
       -- Snippets
       { "L3MON4D3/LuaSnip" },
@@ -426,189 +414,147 @@ return packer.startup({ function(use)
       -- Other mason stuff
       { "jose-elias-alvarez/null-ls.nvim" },
       { "jayp0521/mason-null-ls.nvim" },
+
+      -- DAP
+      { "mfussenegger/nvim-dap" },
+      { "jayp0521/mason-nvim-dap.nvim" },
     },
     config = function()
       require("plugins.config.lsp-zero")
     end,
-  }
+  },
 
-  use {
+  {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
       require("plugins.config.lsp-signature")
     end,
-  }
+  },
 
-  use {
+  {
     'rmagatti/goto-preview',
     config = function()
       require("plugins.config.goto-preview")
     end
-  }
+  },
 
-  use {
-    'kevinhwang91/nvim-hlslens',
+  {
+    "kevinhwang91/nvim-hlslens",
     config = function()
       require("plugins.config.hlslens")
     end
-  }
-
-  use {
-    "mfussenegger/nvim-dap",
-    --[[ module = { "dap" }, ]]
-    --[[ wants = { ]]
-    --[[   "nvim-dap-virtual-text", ]]
-    --[[   "nvim-dap-ui", ]]
-    --[[ }, ]]
-    requires = {
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-      "nvim-telescope/telescope-dap.nvim",
-      "suketa/nvim-dap-ruby",
-    }
-  }
-
-
+  },
 
   -----------------------------------------------------------------------------
   -- Languages
   -----------------------------------------------------------------------------
 
-  use {
+  {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
-    cmd = { "MarkdownPreview" },
-  }
+    cmd = "MarkdownPreview",
+  },
 
-  use {
+  {
     "gaoDean/autolist.nvim",
     ft = "markdown",
     config = function()
       require("autolist").setup({})
     end,
-  }
-
-
+  },
 
   -----------------------------------------------------------------------------
   -- Knowledge Base
   -----------------------------------------------------------------------------
 
-  use {
-    "nvim-orgmode/orgmode",
-    config = function()
-      require("plugins.config.orgmode")
-    end,
-    requires = {
-      "akinsho/org-bullets.nvim",
-      "lukas-reineke/headlines.nvim",
-    },
-  }
-
-  use {
+  {
     "renerocksai/telekasten.nvim",
-    config = function()
-      --[[ require("plugins.config.telekasten") ]]
-    end,
-    requires = {
+    dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-  }
+  },
 
-  use {
+  {
     "mickael-menu/zk-nvim",
     config = function()
       require("plugins.config.zk")
     end
-  }
+  },
 
-  use {
+  {
     "sudormrfbin/cheatsheet.nvim",
     config = function()
       require("cheatsheet").setup({
         bundled_cheatsheets = true,
       })
     end,
-    requires = {
+    cmd = {
+      "Cheatsheet",
+      "CheatsheetEdit",
+    },
+    dependencies = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
     }
-  }
+  },
 
-  use {
+  {
     "romgrk/todoist.nvim",
-  }
-
-
+  },
 
   ----------------------------
   -- Other Stuff
   ----------------------------
 
-  use {
+  {
     "christianrondeau/vim-base64",
     config = function()
       require("plugins.config.vim-base64")
     end
-  }
+  },
 
-  -- Replace with register and don"t copy (use gr instead of r)
-  use {
+  {
+    -- Replace with register and don"t copy (use gr instead of r)
     "vim-scripts/ReplaceWithRegister",
     event = "BufEnter",
-  }
+  },
 
-  use {
+  {
     "akinsho/toggleterm.nvim",
     config = function()
       require("plugins.config.toggleterm")
     end
-  }
+  },
 
-  use {
+  {
     "AckslD/nvim-neoclip.lua",
-    requires = {
-      { 'kkharji/sqlite.lua', module = 'sqlite' },
+    dependencies = {
+      {
+        "kkharji/sqlite.lua",
+        module = "sqlite",
+      },
     },
     config = function()
       require("plugins.config.neoclip")
     end,
-  }
+  },
 
-  -- TODO: Remove me?
-  use {
+  {
+    -- TODO: Remove me?
     'chentoast/marks.nvim',
     config = function()
       require("plugins.config.marks")
     end,
-  }
+  },
 
-  use({
-    'mrjones2014/dash.nvim',
-    run = 'gmake install || make install',
+  {
+    "mrjones2014/dash.nvim",
+    run = "gmake install || make install",
     config = function()
       require("plugins.config.dash")
     end,
-  })
+  },
 
-  --[[ use { ]]
-  --[[   "github/copilot.vim", ]]
-  --[[   config = function() ]]
-  --[[     require("plugins.config.copilot") ]]
-  --[[   end, ]]
-  --[[ } ]]
-
-
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    packer.sync()
-  end
-end,
-  config = {
-    max_jobs = 10,
-  }
 })
