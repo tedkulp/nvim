@@ -15,8 +15,7 @@ mkdir -p ~/.config
 git clone https://github.com/tedkulp/nvim ~/.config/nvim
 ```
 
-After starting neovim, run `:PackerSync` and `:PackerCompile`. Restart nvim
-and you should be good.
+After starting neovim, run `:Lazy sync`. Restart nvim and you should be good.
 
 ## Portable Version
 
