@@ -50,7 +50,6 @@ if wk_status_ok then
     ["<leader><leader>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>,"] = { "<cmd>Telescope buffers<CR>", "Find Buffers" },
     ["<leader>/"] = { "<cmd>Telescope live_grep_args<CR>", "File Search" },
-    ["<leader>."] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<leader>`"] = { ":edit #<CR>", "Last Buffer" },
     ["<leader>l"] = {
       name = "+LSP",

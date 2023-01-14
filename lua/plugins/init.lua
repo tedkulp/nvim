@@ -240,14 +240,18 @@ require("lazy").setup({
   },
 
   {
-    "ggandor/leap.nvim",
-    config = function()
-      require("plugins.config.leap")
-    end,
+    "phaazon/hop.nvim",
+    branch = 'v2',
     dependencies = {
       "Weissle/easy-action",
-      "kevinhwang91/promise-async",
+      {
+        "kevinhwang91/promise-async",
+        module = { "async" },
+      }
     },
+    config = function()
+      require("plugins.config.hop")
+    end,
   },
 
   {
@@ -303,8 +307,8 @@ require("lazy").setup({
         toggleMapping = "<Leader>bn",
         width = 132,
       })
-      require('which-key').register({
-        ['<leader>bn'] = {
+      require("which-key").register({
+        ["<leader>bn"] = {
           "<cmd>NoNeckPain<cr>",
           "Auto-center Buffers",
         },
