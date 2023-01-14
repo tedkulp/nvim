@@ -244,6 +244,7 @@ require("lazy").setup({
     branch = 'v2',
     dependencies = {
       "Weissle/easy-action",
+      "mfussenegger/nvim-treehopper",
       {
         "kevinhwang91/promise-async",
         module = { "async" },
@@ -555,7 +556,7 @@ require("lazy").setup({
 
   {
     "mrjones2014/dash.nvim",
-    run = "gmake install || make install",
+    build = "gmake install || make install",
     config = function()
       require("plugins.config.dash")
     end,
