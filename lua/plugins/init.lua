@@ -256,6 +256,20 @@ require("lazy").setup({
   },
 
   {
+    'ckolkey/ts-node-action',
+    dependencies = { 'nvim-treesitter' },
+    opts = {},
+    config = function()
+      require("which-key").register({
+        ["<C-K>"] = {
+          require("ts-node-action").node_action,
+          "Trigger Node Action",
+        },
+      })
+    end,
+  },
+
+  {
     -- https://github.com/cbochs/grapple.nvim
     "cbochs/grapple.nvim",
     config = function()
