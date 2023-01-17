@@ -64,7 +64,12 @@ if wk_status_ok then
       R = { "<cmd>LspRestart<cr>", "Restart LSP" },
       w = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" },
     },
-    ["<leader>L"] = { "<cmd>Lazy<cr>", "Lazy (Plugin Manager)" },
+    ["<leader>L"] = {
+      name = "+Lazy (Plugin Manager)",
+      l = { "<cmd>Lazy show<cr>", "Show Interface" },
+      s = { "<cmd>Lazy sync<cr>", "Sync Plugins" },
+      p = { "<cmd>Lazy profile<cr>", "Startup Profile" },
+    },
     ["<leader>b"] = {
       name = "+Buffer",
       b = { "<cmd>Telescope buffers<cr>", "Find" },
