@@ -261,7 +261,7 @@ require("lazy").setup({
     opts = {},
     config = function()
       require("which-key").register({
-        ["<C-K>"] = {
+        ["<leader>a"] = {
           require("ts-node-action").node_action,
           "Trigger Node Action",
         },
@@ -369,12 +369,26 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
-      'almo7aya/openingh.nvim',
     },
     cmd = "Octo",
     config = function()
       require("plugins.config.github")
     end
+  },
+
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    event = "BufReadPre",
+    config = function()
+      require("gitlinker").setup({
+        opts = {
+          action_callback = require "gitlinker.actions".open_in_browser
+        },
+      })
+    end,
   },
 
   ----------------------------
@@ -576,4 +590,16 @@ require("lazy").setup({
     end,
   },
 
+  {
+    "jcdickinson/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+      })
+    end
+  },
 })
