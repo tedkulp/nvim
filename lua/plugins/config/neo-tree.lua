@@ -21,7 +21,6 @@ wp.setup({
 
 neotree.setup({
   close_if_last_window = true,
-
   window = {
     width = 30,
     mappings = {
@@ -35,6 +34,21 @@ neotree.setup({
     window = {
       position = "float",
     },
+  },
+  filesystem = {
+    filtered_items = {
+      hide_dotfiles = false,
+      hide_by_name = {
+        ".git",
+        "node_modules",
+        ".vscode",
+      },
+      hide_by_pattern = {
+        "*build*",
+        "*dist*",
+      },
+    },
+    follow_current_file = true,
   },
   git_status = {
     window = {
