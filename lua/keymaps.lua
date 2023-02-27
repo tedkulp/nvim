@@ -13,14 +13,17 @@ vim.g.maplocalleader = " "
 -- I hit f1 way too much - just use :h
 keymap("n", "<f1>", "<nop>")
 
--- I've never created a macro in my life -- I'd like to move this to another key
-keymap("n", "q", "<nop>")
-
 -- Better window navigation
 keymap("n", "<C-h>", "<cmd>wincmd h<cr>", opts)
 keymap("n", "<C-j>", "<cmd>wincmd j<cr>", opts)
 keymap("n", "<C-k>", "<cmd>wincmd k<cr>", opts)
 keymap("n", "<C-l>", "<cmd>wincmd l<cr>", opts)
+
+-- Resize window using <ctrl> arrow keys
+keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+keymap("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<cr>", opts)
@@ -106,7 +109,6 @@ if wk_status_ok then
       C = { "<cmd>Telescope commands<cr>", "Commands" },
     },
     ["gr"] = { "Replace without yank" },
-
     -- LSP Keymaps -- removing conflicts - adding readable descriptions
     ["K"] = { vim.lsp.buf.hover, "Show hover" },
     ["gd"] = { vim.lsp.buf.definition, "Definition" },

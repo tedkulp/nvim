@@ -31,6 +31,10 @@ if not mason_nvim_dap_status_ok then return end
 
 lsp.preset("recommended")
 
+lsp.set_preferences({
+  set_lsp_keymaps = { omit = { 'gr', 'gi' } }
+})
+
 -----------------------------
 -- Completion setup
 -----------------------------
@@ -85,8 +89,8 @@ cmp_mappings["<Tab>"] = cmp.mapping(function(fallback)
   end
 end, { "i", "s" })
 cmp_mappings["<S-Tab>"] = cmp.mapping(function(fallback)
-  if luasnip.jumpable(-1) then
-    luasnip.jump(-1)
+  if luasnip.jumpable( -1) then
+    luasnip.jump( -1)
   else
     fallback()
   end
@@ -95,8 +99,9 @@ end, { "i", "s" })
 -- Add in our custom completion sources
 local cmp_sources = lsp.defaults.cmp_sources()
 
-table.insert(cmp_sources, 1, { name = 'spell' })
-table.insert(cmp_sources, 1, { name = 'emoji' })
+table.insert(cmp_sources, 1, { name = 'codeium' })
+table.insert(cmp_sources, { name = 'spell' })
+table.insert(cmp_sources, { name = 'emoji' })
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
@@ -111,14 +116,15 @@ lsp.setup_nvim_cmp({
       -- item.kind = kind_icon[item.kind]
       item.kind = string.format("%s %s", kind_icon[item.kind], item.kind)
       item.menu = ({
-        luasnip = "[Snippet]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        path = "[Path]",
-        buffer = "[Buffer]",
-        emoji = "[Emoji]",
-        spell = "[Spell]",
-      })[entry.source.name]
+            luasnip = "[Snippet]",
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[Lua]",
+            path = "[Path]",
+            buffer = "[Buffer]",
+            emoji = "[Emoji]",
+            spell = "[Spell]",
+            codium = "[Codium]",
+          })[entry.source.name]
 
       return item
     end
@@ -147,6 +153,16 @@ lsp.configure("ltex", {
 -----------------------------
 -- LSP Lines
 -----------------------------
+
+lsp.configure("yamlls", {
+  settings = {
+    yaml = {
+      schemas = {
+        kubernetes = "/kubernetes/**/*{.yaml,.yml}",
+      },
+    },
+  },
+})
 
 if lines_status_ok and wk_status_ok then
   lines.setup()
