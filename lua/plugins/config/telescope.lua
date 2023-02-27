@@ -26,6 +26,7 @@ end
 
 telescope.setup({
   defaults = {
+    theme = "ivy",
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
@@ -77,7 +78,7 @@ telescope.setup({
     ["telescope-tabs"] = {
       show_preview = false,
       entry_formatter = function(tab_id, buffer_ids, _, _)
-        local cwd = vim.fn.getcwd(-1, tab_id)
+        local cwd = vim.fn.getcwd( -1, tab_id)
         local cwdDirName = cwd:match("%w+$")
         return string.format('%d: %s - %s window(s)', tab_id, cwdDirName, #buffer_ids)
       end,
@@ -112,6 +113,10 @@ telescope.load_extension("live_grep_args")
 -- telescope.load_extension("dap")
 
 wk.register({
+  ["<leader>r"] = {
+    require('telescope.builtin').resume,
+    "Resume Telescope",
+  },
   ["<leader>P"] = {
     "<cmd>Telescope project display_type=full<cr>",
     "Project List",
