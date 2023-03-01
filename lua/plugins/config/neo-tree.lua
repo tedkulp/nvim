@@ -42,6 +42,7 @@ neotree.setup({
         ".git",
         "node_modules",
         ".vscode",
+        "deps",
       },
       hide_by_pattern = {
         "*build*",

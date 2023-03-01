@@ -50,13 +50,6 @@ require("lazy").setup({
         build = "make",
       },
       {
-        "nvim-telescope/telescope-project.nvim",
-        cmd = "Telescope project",
-        config = function()
-          require('telescope').load_extension("project")
-        end,
-      },
-      {
         "jvgrootveld/telescope-zoxide",
         cmd = "Telescope zoxide",
         config = function()
