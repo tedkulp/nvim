@@ -311,8 +311,12 @@ require("lazy").setup({
     "shortcuts/no-neck-pain.nvim",
     config = function()
       require('no-neck-pain').setup({
-        enableOnVimEnter = false,
-        toggleMapping = "<Leader>bn",
+        autocmds = {
+          enableOnVimEnter = false,
+        },
+        mappings = {
+          toggle = "<Leader>bn",
+        },
         width = 132,
       })
       require("which-key").register({
