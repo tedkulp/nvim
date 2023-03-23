@@ -4,6 +4,9 @@ if not lsp_status_ok then return end
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then return end
 
+local copilot_status_ok, copilot = pcall(require, "copilot_cmp")
+if not copilot_status_ok then return end
+
 local luasnip_status_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_status_ok then return end
 
@@ -64,7 +67,8 @@ local kind_icon = {
   Struct = "",
   Event = "",
   Operator = "",
-  TypeParameter = ""
+  TypeParameter = "",
+  Copilot = "",
 }
 
 -- Setup the ctrl-j/k mappings for the dropdown and
@@ -89,8 +93,8 @@ cmp_mappings["<Tab>"] = cmp.mapping(function(fallback)
   end
 end, { "i", "s" })
 cmp_mappings["<S-Tab>"] = cmp.mapping(function(fallback)
-  if luasnip.jumpable( -1) then
-    luasnip.jump( -1)
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
   else
     fallback()
   end
@@ -99,7 +103,7 @@ end, { "i", "s" })
 -- Add in our custom completion sources
 local cmp_sources = lsp.defaults.cmp_sources()
 
-table.insert(cmp_sources, 1, { name = 'codeium' })
+table.insert(cmp_sources, 1, { name = 'copilot' })
 table.insert(cmp_sources, { name = 'spell' })
 table.insert(cmp_sources, { name = 'emoji' })
 
@@ -111,20 +115,20 @@ lsp.setup_nvim_cmp({
   },
   formatting = {
     fields = { "menu", "abbr", "kind" },
-
     format = function(entry, item)
       -- item.kind = kind_icon[item.kind]
       item.kind = string.format("%s %s", kind_icon[item.kind], item.kind)
       item.menu = ({
-            luasnip = "[Snippet]",
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[Lua]",
-            path = "[Path]",
-            buffer = "[Buffer]",
-            emoji = "[Emoji]",
-            spell = "[Spell]",
-            codium = "[Codium]",
-          })[entry.source.name]
+        luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        path = "[Path]",
+        buffer = "[Buffer]",
+        emoji = "[Emoji]",
+        spell = "[Spell]",
+        codium = "[Codium]",
+        copilot = "[Copilot]",
+      })[entry.source.name]
 
       return item
     end

@@ -16,7 +16,7 @@ wp.setup({
       buftype = { 'terminal' },
     },
   },
-  fg_color = '#000',
+  fg_color = '#000000',
 })
 
 neotree.setup({

@@ -588,15 +588,19 @@ require("lazy").setup({
   },
 
   {
-    "jcdickinson/codeium.nvim",
+    "zbirenbaum/copilot-cmp",
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "hrsh7th/nvim-cmp",
+      {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        config = function()
+          require("copilot").setup({})
+        end,
+      },
+      "VonHeikemen/lsp-zero.nvim",
     },
     config = function()
-      require("codeium").setup({
-      })
-    end
+      require("copilot_cmp").setup()
+    end,
   },
 })
