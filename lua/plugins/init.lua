@@ -582,6 +582,9 @@ require("lazy").setup({
   {
     "mrjones2014/dash.nvim",
     build = "gmake install || make install",
+    cond = function()
+      return jit.os == "OSX" or vim.loop.os_uname().sysname == "Darwin" 
+    end,
     config = function()
       require("plugins.config.dash")
     end,
