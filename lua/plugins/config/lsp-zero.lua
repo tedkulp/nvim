@@ -155,6 +155,18 @@ lsp.configure("ltex", {
 })
 
 -----------------------------
+-- Emmet (html macros)
+-----------------------------
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lsp.configure("emmet_ls", {
+  capabilities = capabilities,
+  filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "elixir", "heex" },
+})
+
+-----------------------------
 -- LSP Lines
 -----------------------------
 
