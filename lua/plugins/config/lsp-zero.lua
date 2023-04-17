@@ -4,8 +4,8 @@ if not lsp_status_ok then return end
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then return end
 
-local copilot_status_ok, copilot = pcall(require, "copilot_cmp")
-if not copilot_status_ok then return end
+--[[ local copilot_status_ok, copilot = pcall(require, "copilot_cmp") ]]
+--[[ if not copilot_status_ok then return end ]]
 
 local luasnip_status_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_status_ok then return end
@@ -99,11 +99,15 @@ cmp_mappings["<S-Tab>"] = cmp.mapping(function(fallback)
     fallback()
   end
 end, { "i", "s" })
+cmp_mappings["<CR>"] = cmp.mapping.confirm({
+  select = true,
+  behavior = cmp.ConfirmBehavior.Replace,
+})
 
 -- Add in our custom completion sources
 local cmp_sources = lsp.defaults.cmp_sources()
 
-table.insert(cmp_sources, 1, { name = 'copilot' })
+--[[ table.insert(cmp_sources, 1, { name = 'copilot'  }) ]]
 table.insert(cmp_sources, { name = 'spell' })
 table.insert(cmp_sources, { name = 'emoji' })
 
@@ -127,7 +131,7 @@ lsp.setup_nvim_cmp({
         emoji = "[Emoji]",
         spell = "[Spell]",
         codium = "[Codium]",
-        copilot = "[Copilot]",
+        --[[ copilot = "[Copilot]", ]]
       })[entry.source.name]
 
       return item

@@ -591,19 +591,34 @@ require("lazy").setup({
   },
 
   {
-    "zbirenbaum/copilot-cmp",
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
     dependencies = {
-      {
-        "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        config = function()
-          require("copilot").setup({})
-        end,
-      },
       "VonHeikemen/lsp-zero.nvim",
     },
     config = function()
-      require("copilot_cmp").setup()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+        },
+      })
     end,
   },
+
+  --[[ { ]]
+  --[[   "zbirenbaum/copilot-cmp", ]]
+  --[[   dependencies = { ]]
+  --[[     "zbirenbaum/copilot.lua", ]]
+  --[[     "VonHeikemen/lsp-zero.nvim", ]]
+  --[[   }, ]]
+  --[[   event = "InsertEnter", ]]
+  --[[   config = function() ]]
+  --[[     require("copilot").setup({ ]]
+  --[[       suggestion = { enabled = true }, ]]
+  --[[       panel = { enabled = true }, ]]
+  --[[     }) ]]
+  --[[     require("copilot_cmp").setup() ]]
+  --[[   end, ]]
+  --[[ }, ]]
 })
