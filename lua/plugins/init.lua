@@ -543,7 +543,17 @@ require("lazy").setup({
   {
     "m4xshen/hardtime.nvim",
     event = "VeryLazy",
-    opts = {}
+    opts = {
+      disabled_filetypes = {
+        "qf",
+        "netrw",
+        "NvimTree",
+        "lazy",
+        "mason",
+        "neo-tree",
+        "NeogitStatus",
+      },
+    },
   },
 
   {
