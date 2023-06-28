@@ -26,5 +26,5 @@ neoclip.setup({
   },
 })
 
-vim.keymap.set("i", "<c-o>", "<cmd>lua require('telescope').extensions.neoclip.default()<cr>",
+vim.keymap.set("i", "<c-y>", "<cmd>lua require('telescope').extensions.neoclip.default()<cr>",
   { noremap = true, silent = true })

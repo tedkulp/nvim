@@ -11,7 +11,7 @@ hop.setup({
   keys = 'asdfjkl;qweruiop',
 })
 
-vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "s", ":HopChar1<cr>", { silent = true })
 vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 vim.api.nvim_set_keymap("n", "f",
   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"

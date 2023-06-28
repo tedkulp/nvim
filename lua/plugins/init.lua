@@ -127,6 +127,8 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
       {
         's1n7ax/nvim-window-picker',
+        name = 'window-picker',
+        event = 'VeryLazy',
       },
     },
     config = function()
@@ -416,38 +418,38 @@ require("lazy").setup({
 
   {
     'VonHeikemen/lsp-zero.nvim',
-    event = "BufRead",
+    branch = 'v2.x',
     dependencies = {
       -- LSP Support
-      { "neovim/nvim-lspconfig" },
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "lukas-reineke/lsp-format.nvim" },
-      { "nvim-lua/lsp-status.nvim" },
-      { url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim", name = "lsp_lines", },
+      { 'neovim/nvim-lspconfig' }, -- Required
+      {                            -- Optional
+        'williamboman/mason.nvim',
+        build = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lua" },
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
       { "hrsh7th/cmp-emoji" },
       { "f3fora/cmp-spell" },
-      { "barreiroleo/ltex-extra.nvim" },
 
       -- Snippets
-      { "L3MON4D3/LuaSnip" },
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
       { "rafamadriz/friendly-snippets" },
+
+      -- Format on save
+      { "lukas-reineke/lsp-format.nvim" },
 
       -- Other mason stuff
       { "jose-elias-alvarez/null-ls.nvim" },
       { "jayp0521/mason-null-ls.nvim" },
 
-      -- DAP
-      { "mfussenegger/nvim-dap" },
-      { "jayp0521/mason-nvim-dap.nvim" },
     },
     config = function()
       require("plugins.config.lsp-zero")
@@ -539,6 +541,12 @@ require("lazy").setup({
   ----------------------------
 
   {
+    "m4xshen/hardtime.nvim",
+    event = "VeryLazy",
+    opts = {}
+  },
+
+  {
     "christianrondeau/vim-base64",
     config = function()
       require("plugins.config.vim-base64")
@@ -583,7 +591,7 @@ require("lazy").setup({
     "mrjones2014/dash.nvim",
     build = "gmake install || make install",
     cond = function()
-      return jit.os == "OSX" or vim.loop.os_uname().sysname == "Darwin" 
+      return jit.os == "OSX" or vim.loop.os_uname().sysname == "Darwin"
     end,
     config = function()
       require("plugins.config.dash")
@@ -593,9 +601,9 @@ require("lazy").setup({
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
-    dependencies = {
-      "VonHeikemen/lsp-zero.nvim",
-    },
+    --[[ dependencies = { ]]
+    --[[   "VonHeikemen/lsp-zero.nvim", ]]
+    --[[ }, ]]
     config = function()
       require("copilot").setup({
         suggestion = {

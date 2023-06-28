@@ -8,15 +8,14 @@ local wk_status_ok, wk = pcall(require, "which-key")
 if not wk_status_ok then return end
 
 wp.setup({
-  autoselect_one = true,
-  include_current = false,
   filter_rules = {
+    autoselect_one = true,
+    include_current = false,
     bo = {
       filetype = { 'neo-tree', 'neo-tree-popup', 'notify', 'quickfix' },
       buftype = { 'terminal' },
     },
   },
-  fg_color = '#000000',
 })
 
 neotree.setup({
