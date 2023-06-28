@@ -10,10 +10,10 @@ if not wk_status_ok then return end
 wp.setup({
   filter_rules = {
     autoselect_one = true,
-    include_current = false,
+    include_current_win = false,
     bo = {
       filetype = { 'neo-tree', 'neo-tree-popup', 'notify', 'quickfix' },
-      buftype = { 'terminal' },
+      buftype = { 'terminal', 'nofile' },
     },
   },
 })
