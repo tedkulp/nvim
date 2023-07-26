@@ -120,7 +120,7 @@ require("lazy").setup({
 
   {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
@@ -449,7 +449,18 @@ require("lazy").setup({
       -- Other mason stuff
       { "jose-elias-alvarez/null-ls.nvim" },
       { "jayp0521/mason-null-ls.nvim" },
-
+      {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        config = function()
+          require("copilot").setup({
+            suggestion = {
+              enabled = true,
+              auto_trigger = true,
+            },
+          })
+        end,
+      },
     },
     config = function()
       require("plugins.config.lsp-zero")
@@ -540,21 +551,21 @@ require("lazy").setup({
   -- Other Stuff
   ----------------------------
 
-  {
-    "m4xshen/hardtime.nvim",
-    event = "VeryLazy",
-    opts = {
-      disabled_filetypes = {
-        "qf",
-        "netrw",
-        "NvimTree",
-        "lazy",
-        "mason",
-        "neo-tree",
-        "NeogitStatus",
-      },
-    },
-  },
+  --[[ { ]]
+  --[[   "m4xshen/hardtime.nvim", ]]
+  --[[   event = "VeryLazy", ]]
+  --[[   opts = { ]]
+  --[[     disabled_filetypes = { ]]
+  --[[       "qf", ]]
+  --[[       "netrw", ]]
+  --[[       "NvimTree", ]]
+  --[[       "lazy", ]]
+  --[[       "mason", ]]
+  --[[       "neo-tree", ]]
+  --[[       "NeogitStatus", ]]
+  --[[     }, ]]
+  --[[   }, ]]
+  --[[ }, ]]
 
   {
     "christianrondeau/vim-base64",

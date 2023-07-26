@@ -3,6 +3,7 @@ local luasnip = require('luasnip')
 local lsp_format = require('lsp-format')
 local mason_null_ls = require('mason-null-ls')
 local null_ls = require('null-ls')
+local copilot = require('copilot.suggestion')
 
 
 -----------------------------
@@ -79,7 +80,9 @@ cmp.setup({
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-Space>"] = cmp.mapping(cmp.mapping(cmp.mapping.complete({}), { "i", "c" })),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_jumpable() then
+      if copilot.is_visible() then
+        copilot.accept()
+      elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
