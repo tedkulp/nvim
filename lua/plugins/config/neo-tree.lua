@@ -29,7 +29,9 @@ neotree.setup({
     },
   },
   buffers = {
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true,
+    },
     window = {
       position = "float",
     },
@@ -48,7 +50,9 @@ neotree.setup({
         "*dist*",
       },
     },
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true,
+    },
   },
   git_status = {
     window = {
