@@ -72,6 +72,7 @@ require("lazy").setup({
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
+        flavour = "mocha",
         dim_inactive = {
           enabled = true,
         },
